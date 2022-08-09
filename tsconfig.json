@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -26,6 +26,6 @@
   ],
   "exclude": [
     "node_modules",
-    "components/Demo/events.ts"
+    "lib/datasets/events.ts"
   ]
 }
