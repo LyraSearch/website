@@ -13,6 +13,10 @@ const pages = [
     href: "/demo",
   },
   {
+    name: "Fast",
+    href: "/fast",
+  },
+  {
     name: "Benchmarks",
     href: "/benchmarks",
   },
@@ -24,10 +28,10 @@ const pages = [
 
 export function NavBar() {
   return (
-    <div className="w-full backdrop-blur-sm fixed z-20">
+    <div className="fixed z-20 w-full backdrop-blur-sm">
       <Container>
         <div className="flex justify-between py-6 m-auto">
-          <div className="font-bold text-3xl">
+          <div className="text-3xl font-bold">
             <Link href='/' passHref>
               <a>
                 ✨ Lyra
@@ -39,7 +43,7 @@ export function NavBar() {
             {
               pages.map(page => (
                 <Link href={page.href} passHref key={page.href}>
-                  <a className="hover:text-slate-300 mr-4">
+                  <a className="mr-4 hover:text-slate-300">
                     {page.name}
                   </a>
                 </Link>
