@@ -1,46 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { create, formatNanoseconds, insert, search } from "@nearform/lyra";
-import dataset from "./events";
-
-interface Hit {
-  description: string;
-  date: string;
-  granularity: string;
-  categories: {
-    category1: string;
-    category2: string;
-  };
-}
-
-interface SearchResult {
-  count: number;
-  hits: Hit[];
-  elapsed: bigint;
-}
+import dataset from "../../lib/datasets/events";
+import { SearchResult, schema } from "../../lib/lyra-helpers";
+import { formatNumber, formatYear } from "../../lib/utils";
 
 const db = create({
-  schema: {
-    date: "string",
-    description: "string",
-    categories: {
-      category1: "string",
-      category2: "string",
-    },
-    granularity: "string",
-  },
+  schema: schema as any,
 });
-
-function formatYear(date: string) {
-  if (date.startsWith("-")) {
-    return date.slice(1) + " BC";
-  }
-
-  return date;
-}
-
-function formatNumber(number: number) {
-  return number.toLocaleString();
-}
 
 export function LyraDemo() {
   const [indexing, setIndexing] = useState(dataset.result.events.length);
@@ -54,7 +20,10 @@ export function LyraDemo() {
   useEffect(() => {
     function addDocuments() {
       // We use Random here just to show a nice UI to the user
-      const batch = dataset.result.events.splice(0, 300 + Math.floor(Math.random() * 1000));
+      const batch = dataset.result.events.splice(
+        0,
+        300 + Math.floor(Math.random() * 1000)
+      );
 
       if (!batch.length) {
         setIndexing(0);
@@ -73,7 +42,7 @@ export function LyraDemo() {
         });
       }
 
-      setIndexing(indexing => indexing - batch.length);
+      setIndexing((indexing) => indexing - batch.length);
       requestAnimationFrame(addDocuments);
     }
 
@@ -94,14 +63,14 @@ export function LyraDemo() {
         offset,
         exact,
         tolerance,
-      }),
+      })
     );
   }, [term, limit, offset, exact, tolerance]);
 
   if (indexing > 0) {
     return (
       <>
-        <div className="flex justify-center text-center text-xl">
+        <div className="flex justify-center text-xl text-center">
           <div>
             <h2>
               Indexing <strong>{formatNumber(indexing)}</strong> events
@@ -116,42 +85,69 @@ export function LyraDemo() {
   return (
     <>
       <div>
-        <label htmlFor="term" className="font-bold">Term</label>
+        <label htmlFor="term" className="font-bold">
+          Term
+        </label>
         <input
           id="term"
           type="text"
           value={term}
-          onChange={e => setTerm(e.target.value)}
+          onChange={(e) => setTerm(e.target.value)}
           placeholder="Type a search term here..."
-          className="w-full p-2 rounded-lg text-slate-900 border-2 border-violet-300"
+          className="w-full p-2 border-2 rounded-lg text-slate-900 border-violet-300"
         />
 
-        <div className="mt-4 grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-4 gap-10 mt-4">
           <div className="grid">
-            <label htmlFor="exact" className="font-bold">Exact</label>
-            <select id="exact" value={exact.toString()} onChange={() => setExact(exact => !exact)} className='rounded-md p-2 text-slate-900 border-2 border-violet-300'>
+            <label htmlFor="exact" className="font-bold">
+              Exact
+            </label>
+            <select
+              id="exact"
+              value={exact.toString()}
+              onChange={() => setExact((exact) => !exact)}
+              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
+            >
               <option value={"false"}>No</option>
               <option value={"true"}>Yes</option>
             </select>
           </div>
           <div className="grid">
-            <label htmlFor="limit" className="font-bold">Limit</label>
-            <input id="limit" type="number" value={limit} onChange={e => setLimit(parseInt(e.target.value))} className='rounded-md p-2 text-slate-900 border-2 border-violet-300' />
+            <label htmlFor="limit" className="font-bold">
+              Limit
+            </label>
+            <input
+              id="limit"
+              type="number"
+              value={limit}
+              onChange={(e) => setLimit(parseInt(e.target.value))}
+              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
+            />
           </div>
           <div className="grid">
-            <label htmlFor="offset" className="font-bold">Offset</label>
-            <input id="offset" type="number" value={offset} onChange={e => setOffset(parseInt(e.target.value))} className='rounded-md p-2 text-slate-900 border-2 border-violet-300' />
+            <label htmlFor="offset" className="font-bold">
+              Offset
+            </label>
+            <input
+              id="offset"
+              type="number"
+              value={offset}
+              onChange={(e) => setOffset(parseInt(e.target.value))}
+              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
+            />
           </div>
           <div className="grid">
-            <label htmlFor="tolerance" className="font-bold">Typo tolerance</label>
+            <label htmlFor="tolerance" className="font-bold">
+              Typo tolerance
+            </label>
             <input
               id="tolerance"
               type="number"
               value={tolerance}
               max={3}
               min={0}
-              onChange={e => setTolerance(parseInt(e.target.value))}
-              className='rounded-md p-2 text-slate-900 border-2 border-violet-300'
+              onChange={(e) => setTolerance(parseInt(e.target.value))}
+              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
             />
           </div>
         </div>
@@ -159,12 +155,16 @@ export function LyraDemo() {
         {results && (
           <>
             <h2 className="my-5">
-              Found <strong>{results.count} results</strong> in <strong>{formatNanoseconds(results.elapsed)}</strong>
+              Found <strong>{results.count} results</strong> in{" "}
+              <strong>{formatNanoseconds(results.elapsed)}</strong>
             </h2>
 
             <div>
               {results.hits.map((result, i) => (
-                <p key={i + result.description} className='flex flex-col mb-4 bg-violet-500 rounded-lg p-4'>
+                <p
+                  key={i + result.description}
+                  className="flex flex-col p-4 mb-4 rounded-lg bg-violet-500"
+                >
                   <span className="w-full">
                     Year: <strong>{formatYear(result.date)}</strong>
                   </span>
@@ -177,7 +177,9 @@ export function LyraDemo() {
                   <span className="w-full">
                     Granularity: <strong>{result.granularity}</strong>
                   </span>
-                  <span dangerouslySetInnerHTML={{ __html: result.description }}></span>
+                  <span
+                    dangerouslySetInnerHTML={{ __html: result.description }}
+                  ></span>
                 </p>
               ))}
             </div>
