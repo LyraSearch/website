@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { create, formatNanoseconds, insert, search } from "@nearform/lyra";
 import dataset from "../../lib/datasets/events";
+import styles from "./demo.module.css";
 import { SearchResult, schema } from "../../lib/lyra-helpers";
 import { formatNumber, formatYear } from "../../lib/utils";
 
@@ -94,47 +95,24 @@ export function LyraDemo() {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
           placeholder="Type a search term here..."
-          className="w-full p-2 border-2 rounded-lg text-slate-900 border-violet-300"
+          className={styles.input}
         />
 
-        <div className="grid grid-cols-4 gap-10 mt-4">
+        <div className="grid grid-cols-2 gap-4 mt-4 lg:gap-10 lg:grid-cols-4">
           <div className="grid">
-            <label htmlFor="exact" className="font-bold">
-              Exact
-            </label>
-            <select
-              id="exact"
-              value={exact.toString()}
-              onChange={() => setExact((exact) => !exact)}
-              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
-            >
+            <label htmlFor="exact" className="font-bold">Exact</label>
+            <select id="exact" value={exact.toString()} onChange={() => setExact(exact => !exact)} className={styles.select}>
               <option value={"false"}>No</option>
               <option value={"true"}>Yes</option>
             </select>
           </div>
           <div className="grid">
-            <label htmlFor="limit" className="font-bold">
-              Limit
-            </label>
-            <input
-              id="limit"
-              type="number"
-              value={limit}
-              onChange={(e) => setLimit(parseInt(e.target.value))}
-              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
-            />
+            <label htmlFor="limit" className="font-bold">Limit</label>
+            <input id="limit" type="number" value={limit} onChange={e => setLimit(parseInt(e.target.value))} className={styles.input} />
           </div>
           <div className="grid">
-            <label htmlFor="offset" className="font-bold">
-              Offset
-            </label>
-            <input
-              id="offset"
-              type="number"
-              value={offset}
-              onChange={(e) => setOffset(parseInt(e.target.value))}
-              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
-            />
+            <label htmlFor="offset" className="font-bold">Offset</label>
+            <input id="offset" type="number" value={offset} onChange={e => setOffset(parseInt(e.target.value))} className={styles.input} />
           </div>
           <div className="grid">
             <label htmlFor="tolerance" className="font-bold">
@@ -146,8 +124,8 @@ export function LyraDemo() {
               value={tolerance}
               max={3}
               min={0}
-              onChange={(e) => setTolerance(parseInt(e.target.value))}
-              className="p-2 border-2 rounded-md text-slate-900 border-violet-300"
+              onChange={e => setTolerance(parseInt(e.target.value))}
+              className={styles.input}
             />
           </div>
         </div>
@@ -161,10 +139,7 @@ export function LyraDemo() {
 
             <div>
               {results.hits.map((result, i) => (
-                <p
-                  key={i + result.description}
-                  className="flex flex-col p-4 mb-4 rounded-lg bg-violet-500"
-                >
+                <p key={i + result.description} className='flex flex-col p-4 mb-4 rounded-lg bg-violet-500'>
                   <span className="w-full">
                     Year: <strong>{formatYear(result.date)}</strong>
                   </span>

@@ -1,0 +1,8 @@
+.input,
+.select {
+  @apply rounded-md p-2 text-slate-900 border-2 border-violet-300;
+  width: 100%;
+  outline: 0;
+  box-shadow: none;
+  font-size: 1.3em;
+}
