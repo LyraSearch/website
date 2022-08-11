@@ -1,14 +1,18 @@
 import { useCallback, useMemo, useState } from "react";
-
+import cn from "classnames";
 import { create, insert, formatNanoseconds } from "@nearform/lyra";
 import { schema } from "../../lib/lyra-helpers";
 import events from "../../lib/datasets/events";
-import { formatNumber, getNanosecondsTime } from "../../lib/utils";
+import { getNanosecondsTime, formatNumber } from "../../lib/utils";
 import { PlayIcon, RefreshIcon } from "../Icons";
+
+import styles from "./insert.module.css";
 
 let db = create({
   schema: schema as any,
 });
+
+const INSERT_LIMIT = 500;
 
 export default function InsertDemo() {
   const [documentsInserted, setDocumentsInserted] = useState(0);
@@ -22,8 +26,15 @@ export default function InsertDemo() {
 
   const totalDocuments = useMemo(() => data.length, [data]);
 
+  const insertCompleted = useMemo(
+    () => documentsInserted === totalDocuments,
+    [documentsInserted, totalDocuments]
+  );
+
   const handleInsertion = useCallback(() => {
-    const events = data.splice(0, 300 + Math.floor(Math.random() * 1000));
+    if (documentsInserted > totalDocuments) return;
+
+    const events = data.splice(0, INSERT_LIMIT);
 
     if (!events.length) {
       return;
@@ -51,16 +62,16 @@ export default function InsertDemo() {
 
     requestAnimationFrame(handleInsertion);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, db]);
+  }, [documentsInserted, db]);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setDocumentsInserted(0);
     setTimeElapsed(0n);
 
     db = create({
       schema: schema as any,
     });
-  };
+  }, []);
 
   return (
     <>
@@ -78,28 +89,6 @@ export default function InsertDemo() {
 
       <div className="pt-10">
         <p className="text-xl font-bold">Let&apos;s try!</p>
-
-        <div className="flex flex-row justify-between h-full pt-5">
-          <span className="text-body">
-            Total of documents should be inserted:{" "}
-          </span>
-          <span>
-            <strong>{formatNumber(totalDocuments)}</strong>
-          </span>
-        </div>
-        <div className="flex flex-row justify-between h-full pt-5">
-          <span className="text-body">Total of douments inserted: </span>
-          <span>
-            <strong>{formatNumber(documentsInserted)}</strong>
-          </span>
-        </div>
-        <div className="flex flex-row justify-between h-full pt-5">
-          <span className="text-body">Time Elapsed:</span>
-          <span>
-            <strong>{formatNanoseconds(timeElapsed)}</strong>
-          </span>
-        </div>
-
         {/* Progress bar */}
         <div className="flex flex-row justify-between h-full pt-2">
           <div className="w-full h-2 bg-gray-200 rounded-full dark:bg-gray-700">
@@ -115,41 +104,42 @@ export default function InsertDemo() {
         {/* Buttons */}
         <div className="flex flex-row justify-center pt-5 lg:justify-start">
           <button
-            onClick={handleInsertion}
-            className="px-4 py-2 mr-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            onClick={() => {
+              if (!insertCompleted) {
+                handleInsertion();
+              } else {
+                reset();
+              }
+            }}
+            className={cn(
+              "px-4 py-2 mr-2 font-bold text-white ",
+              !insertCompleted
+                ? "px-4 py-2 mr-2 font-bold text-white bg-blue-900 rounded hover:bg-blue-700"
+                : "bg-gray-500 rounded hover:bg-gray-700"
+            )}
           >
-            <PlayIcon />
-          </button>
-
-          <button
-            onClick={reset}
-            className="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-700"
-          >
-            <RefreshIcon />
+            {!insertCompleted ? <PlayIcon /> : <RefreshIcon />}
           </button>
         </div>
 
         {/* More stats */}
-        <div className="grid grid-cols-3 gap-10 pt-5 text-center">
-          <div className="grid col-span-1">
-            <span className="text-body">
-              <strong>
-                {formatNumber(documentsInserted)} /{" "}
-                {formatNumber(totalDocuments)}
-              </strong>{" "}
-              documents inserted
-            </span>
+        <style jsx>{``}</style>
+        <div className="flex flex-col items-center justify-center pt-5 md:justify-between lg:flex-row">
+          <div className={cn(styles.stat, "bg-blue-900 text-blue-100")}>
+            <span className="text-lg">Documents inserted</span>
+            <div className="flex items-center justify-center m-auto">
+              <span className="font-bold text-body">
+                {documentsInserted} / {totalDocuments}
+              </span>
+            </div>
           </div>
-          <div className="grid col-span-1">
-            <span className="text-body">
-              <strong>{formatNanoseconds(timeElapsed)}</strong> elapsed
-            </span>
-          </div>
-          <div className="grid col-span-1">
-            <span className="text-body">
-              <strong>{Math.ceil(documentsInserted / 1000)} </strong>
-              documents/ms
-            </span>
+          <div className={cn(styles.stat, "bg-green-900 text-green-100")}>
+            <span className="text-lg">Elpased Time</span>
+            <div className="flex items-center justify-center m-auto">
+              <span className="font-bold text-body">
+                {formatNanoseconds(timeElapsed)}
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -18,10 +18,6 @@ const pages = [
     href: "/demo",
   },
   {
-    name: "Fast",
-    href: "/fast",
-  },
-  {
     name: "Benchmarks",
     href: "/benchmarks",
   },

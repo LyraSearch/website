@@ -1,0 +1,12 @@
+.stat {
+  @apply text-2xl font-thin shadow-lg rounded-md;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem auto;
+}

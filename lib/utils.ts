@@ -1,4 +1,3 @@
-const k = 1024;
 const nano = BigInt(1e3);
 const milli = BigInt(1e6);
 const second = BigInt(1e9);
