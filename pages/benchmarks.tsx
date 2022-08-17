@@ -11,10 +11,10 @@ export default function Benchmarks() {
       </div>
 
       <Container size="full" className="py-20 text-gray-900 bg-gray-200">
-        <Container size="md">
+        <Container size="lg">
           <InsertDemo />
         </Container>
       </Container>
     </Container>
-  )
+  );
 }

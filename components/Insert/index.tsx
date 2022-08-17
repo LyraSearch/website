@@ -78,7 +78,7 @@ export default function InsertDemo() {
       <div>
         <h2 className="text-2xl font-black">
           {" "}
-          How fast is <i>insert</i> action?{" "}
+          How fast is the <i>insert</i> action?{" "}
         </h2>
         <p>
           Performing this action is very important in cases where databases are
