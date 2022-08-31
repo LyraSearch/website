@@ -180,7 +180,7 @@ const searchResult = search(db, {
           </div>
 
           <div className='text-center mt-20'>
-            <a href='https://nearform.github.io/lyra/' className='text-violet-100 bg-violet-900 hover:bg-violet-800 px-6 py-3 font-bold text-xl rounded-md'>
+            <a href='https://docs.lyrajs.io/' className='text-violet-100 bg-violet-900 hover:bg-violet-800 px-6 py-3 font-bold text-xl rounded-md'>
               Read the full docs
             </a>
           </div>
