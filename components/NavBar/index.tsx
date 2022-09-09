@@ -1,90 +1,54 @@
-import s from "./navbar.module.css";
+import type { FC } from 'react'
+import Link from 'next/link'
+import { Image } from '@chakra-ui/image'
+import { Box, Text } from '@chakra-ui/layout'
 
-import { useState } from "react";
-import cn from "classnames";
-import Link from "next/link";
-import { AiFillGithub } from "react-icons/ai";
-import { Container } from "../Container";
-import { MenuIcon } from "../Icons";
+interface PageLinkProps {
+  href: string
+  label: string
+}
 
-const pages = [
+const pages: PageLinkProps[] = [
   {
-    name: "Docs",
-    href: "https://docs.lyrajs.io",
-    external: true,
+    href: '/docs',
+    label: 'Docs'
   },
   {
-    name: "Live demo",
-    href: "/demo",
+    href: '/about',
+    label: 'About'
   },
   {
-    name: "Benchmarks",
-    href: "/benchmarks",
-  },
-  {
-    name: "Contribute",
-    href: "/contribute",
-  },
-];
+    href: '/team',
+    label: 'Team'
+  }
+]
 
-const GitHubLink = () => (
-  <a
-    href="https://github.com/nearform/lyra"
-    target="_blank"
-    rel="noreferrer"
-    className="hover:text-slate-300"
-  >
-    <AiFillGithub className="w-5 h-5" />
-  </a>
-);
+const PageLink: FC<PageLinkProps> = ({ href, label }) => (
+  <Link href={href} passHref>
+    <Text as='a' textTransform='uppercase' ml='4' _hover={{ color: 'gray.400' }}>
+      {label}
+    </Text>
+  </Link>
+)
 
-export function NavBar() {
-  const [mobileNavbar, setMobileNavbar] = useState(false);
-
-  const toggleMobileNavbar = () => setMobileNavbar(!mobileNavbar);
-
+export const NavBar: FC<{}> = () => {
   return (
-    <div className={s.navbar}>
-      <Container>
-        <div className="flex justify-between py-6 m-auto">
-          <div className="text-3xl font-bold">
-            <Link href="/" passHref>
-              <a>✨ Lyra</a>
-            </Link>
-          </div>
+    <Box width='full' pos='fixed' zIndex='banner'>
+      <Box maxW='container.xl' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
+        <Link href='/' passHref>
+          <a>
+            <Image
+              src='/logo/lyra-edge-logo-white.svg'
+              alt='Lyra, the edge search experience'
+              w='44'
+            />
+          </a>
+        </Link>
 
-          <div className="flex items-center justify-end">
-            <div className={s.desktopNavbar}>
-              {pages.map((page) => (
-                <Link href={page.href} passHref key={page.href}>
-                  <a className="mr-4 hover:text-slate-300">{page.name}</a>
-                </Link>
-              ))}
-            </div>
-
-            <GitHubLink />
-
-            <div className={s.mobileNavbar}>
-              <button onClick={toggleMobileNavbar} aria-label="Toggle Menu">
-                <MenuIcon />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        {mobileNavbar && (
-          <div className="flex flex-col transition-all duration-300">
-            {pages.map((page) => (
-              <div className={s.menuLink} key={page.href}>
-                <Link href={page.href} passHref className={s.menuLink}>
-                  <a className="mr-4 hover:text-slate-300">{page.name}</a>
-                </Link>
-              </div>
-            ))}
-          </div>
-        )}
-      </Container>
-    </div>
-  );
+        <Box>
+          {pages.map((page) => <PageLink key={page.href} {...page} />)}
+        </Box>
+      </Box>
+    </Box>
+  )
 }

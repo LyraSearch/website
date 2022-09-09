@@ -1,40 +1,31 @@
 import type { AppProps } from 'next/app'
+import { extendTheme, Box, ChakraProvider } from '@chakra-ui/react'
 import { NavBar } from '../components/NavBar'
-import { Footer } from '../components/Footer'
-import { DefaultSeo } from 'next-seo'
-import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+import '@fontsource/inter/100.css'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/800.css'
+import '@fontsource/inter/900.css'
+
+const theme = extendTheme({
+  fonts: {
+    heading: '\'Engravers Gothic\', sans-serif',
+    body: '\'Inter\', sans-serif'
+  },
+  colors: {
+    darkBg: '#01010B'
+  }
+})
+
+function MyApp ({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <DefaultSeo
-        title='✨ Lyra'
-        description='Fast, in-memory, typo-tolerant, full-text search engine written in TypeScript'
-        defaultTitle='✨ Lyra'
-        openGraph={{
-          type: 'website',
-          locale: 'en_IE',
-          url: 'https://lyrajs.io/',
-          site_name: 'Lyra',
-          description: 'Fast, in-memory, typo-tolerant, full-text search engine written in TypeScript',
-          title: 'Lyra',
-          images: [
-            {
-              url: 'https://lyrajs.io/imgs/seo/lyra-og-image.png',
-              alt: 'Lyra, full-text search engine',
-              height: 1080,
-              width: 1920,
-            }
-          ]
-        }}
-      />
-      <div className='w-full min-h-screen bg-slate-100 text-slate-100'>
+    <ChakraProvider theme={theme}>
+      <Box w='full' bgColor='darkBg' style={{ minHeight: '100vh' }} color='gray.200'>
         <NavBar />
         <Component {...pageProps} />
-        <Footer />
-      </div>
-    </>
-  );
+      </Box>
+    </ChakraProvider>
+  )
 }
 
 export default MyApp
