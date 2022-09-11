@@ -1,0 +1,25 @@
+{
+  "core": [
+    {
+      "name": "Michele Riva",
+      "role": "Senior Software Architect @NearForm",
+      "image": "/team/micheleriva.jpg",
+      "social": {
+        "twitter": "MicheleRivaCode",
+        "github": "MicheleRiva",
+        "linkedin": "MicheleRiva95"
+      }
+    },
+    {
+      "name": "Paolo Insogna",
+      "role": "Node.js core member and Staff Engineer @NearForm",
+      "image": "/team/paoloinsogna.jpg",
+      "social": {
+        "twitter": "p_insogna",
+        "github": "ShogunPanda",
+        "linkedin": "paoloinsogna"
+      }
+    }
+  ],
+  "contributors": []
+}
