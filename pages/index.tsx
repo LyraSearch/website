@@ -37,7 +37,7 @@ const supportedRuntimes = [
   {
     name: 'React Native',
     image: '/misc/runtimes/react-native.svg'
-  },
+  }
 ]
 
 const Home: NextPage = () => {
