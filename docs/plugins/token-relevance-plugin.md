@@ -1,18 +1,21 @@
 ---
 title: Token relevance plugin (TF-IDF)
 metaTitle: Lyra plugin to get TF-IDF scores from indexes
+badges:
+  - label: npm
+    url: https://www.npmjs.com/package/@lyrasearch/plugin-token-relevance
+    image: https://img.shields.io/npm/v/@lyrasearch/plugin-token-relevance?color=brightgreen
+  - label: Tests
+    url: https://github.com/LyraSearch/plugin-token-relevance/actions/workflows/tests.yml
+    image: https://github.com/LyraSearch/plugin-token-relevance/actions/workflows/tests.yml/badge.svg
+  - label: GitHub stars
+    url: https://github.com/lyrasearch/plugin-token-relevance
+    image: https://img.shields.io/github/stars/lyrasearch/plugin-token-relevance?style=social
 ---
 
-# Token relevance plugin (TF-IDF)
-
-[![Tests](https://github.com/LyraSearch/plugin-token-relevance/actions/workflows/tests.yml/badge.svg)](https://github.com/LyraSearch/plugin-token-relevance/actions/workflows/tests.yml)
-[![GitHub Repo stars](https://img.shields.io/github/stars/lyrasearch/plugin-token-relevance?style=social)](https://github.com/lyrasearch/plugin-token-relevance)
-
-:::caution Still experimental
-
+<alert title="Beware!" status="error">
 This plugin is still in its Alpha stage and it's highly experimental.
-
-:::
+</alert>
 
 The `plugin-token-relevance` plugin provides an easy way to get TF-IDF scores
 from Lyra indexes. <br /> This allows Lyra to:
@@ -34,15 +37,15 @@ The plugin is currently available on the following runtimes:
 
 You can install the plugin using any major Node.js/Bun package manager:
 
-```bash title="Install with npm"
+```bash
 npm install --save @lyrasearch/plugin-token-relevance
 ```
 
-```bash title="Install with yarn"
+```bash
 yarn add @lyrasearch/plugin-token-relevance
 ```
 
-```bash title="Install with pnpm"
+```bash
 pnpm add @lyrasearch/plugin-token-relevance
 ```
 

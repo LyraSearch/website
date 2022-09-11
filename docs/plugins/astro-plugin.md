@@ -1,15 +1,20 @@
 ---
 title: Astro Plugin
 metaTitle: Integrating Lyra with Astro
+badges:
+  - label: npm
+    url: https://www.npmjs.com/package/@lyrasearch/plugin-astro
+    image: https://img.shields.io/npm/v/@lyrasearch/plugin-astro?color=brightgreen
+  - label: Tests
+    url: https://github.com/LyraSearch/plugin-astro/actions/workflows/tests.yml
+    image: https://github.com/LyraSearch/plugin-astro/actions/workflows/tests.yml/badge.svg
+  - label: GitHub stars
+    url: https://github.com/lyrasearch/plugin-astro
+    image: https://img.shields.io/github/stars/lyrasearch/plugin-astro?style=social
 ---
 
-# Astro plugin
-
-[![Tests](https://github.com/LyraSearch/plugin-astro/actions/workflows/tests.yml/badge.svg)](https://github.com/LyraSearch/plugin-astro/actions/workflows/tests.yml)
-[![GitHub Repo stars](https://img.shields.io/github/stars/lyrasearch/plugin-astro?style=social)](https://github.com/lyrasearch/plugin-astro)
-
-The `plugin-astro` plugin allows you to index the content of your Astro websites
-and offer text search to your visitors.
+The `@lyrasearch/plugin-astro` plugin allows you to index the content of your
+Astro websites and offer text search to your visitors.
 
 ## Index
 

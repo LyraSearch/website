@@ -36,7 +36,7 @@ export const DocsVerticalNav: FC<DocsVerticalNavProps> = ({ paths }) => {
   }, {})
 
   return (
-    <Box>
+    <Box pos='sticky' top='36' borderRight='1px' borderColor='gray.700' pr='10'>
       {Object.keys(pathsObject).map((key) => (
         <Accordion allowToggle key={key}>
           <AccordionItem border='none' rounded='md' _hover={{ bg: 'gray.800' }} transition='ease 0.3s'>

@@ -8,6 +8,8 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/900.css'
 
 const theme = extendTheme({
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
   fonts: {
     heading: '\'Roboto\', sans-serif',
     body: '\'Roboto\', sans-serif'

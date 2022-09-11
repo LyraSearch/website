@@ -37,12 +37,14 @@ export const NavSearch = () => {
 
   return (
     <Box pos='relative'>
-      <InputGroup ml='4'>
+      <InputGroup ml='8'>
         <InputLeftElement
+          h='8'
           pointerEvents='none'
           children={<SearchIcon color='gray.200' />}
         />
         <Input
+          colorScheme='whiteAlpha'
           size='sm'
           placeholder='Search'
           rounded='md'

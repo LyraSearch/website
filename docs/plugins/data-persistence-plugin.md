@@ -1,14 +1,17 @@
 ---
 title: Data Persistence Plugin
 metaTitle: Persisting data in JSON, dpack, messagepack with Lyra
+badges:
+  - label: npm
+    url: https://www.npmjs.com/package/@lyrasearch/plugin-data-persistence
+    image: https://img.shields.io/npm/v/@lyrasearch/plugin-data-persistence?color=brightgreen
+  - label: Tests
+    url: https://github.com/LyraSearch/plugin-data-persistence/actions/workflows/tests.yml
+    image: https://github.com/LyraSearch/plugin-astro/actions/workflows/tests.yml/badge.svg
+  - label: GitHub stars
+    url: https://github.com/lyrasearch/plugin-data-persistence
+    image: https://img.shields.io/github/stars/lyrasearch/plugin-data-persistence?style=social
 ---
-
-import GithubStarsButton from '../../src/components/Button/GithubStars';
-
-# Data persistence plugin
-
-[![Tests](https://github.com/LyraSearch/plugin-data-persistence/actions/workflows/tests.yml/badge.svg)](https://github.com/LyraSearch/plugin-disk-persistence/actions/workflows/tests.yml)
-[![GitHub Repo stars](https://img.shields.io/github/stars/lyrasearch/plugin-data-persistence?style=social)](https://github.com/lyrasearch/plugin-data-persistence)
 
 The `plugin-data-persistence` plugin allows Lyra to bump the entire database and
 restore it in three different formats.

@@ -3,8 +3,6 @@ title: Plugin system
 metaTitle: How the Lyra plugin system works
 ---
 
-# Lyra plugin system
-
 Since the beginning of the project, Lyra has been developed thinking of a simple
 way to add new features via a plugin system, leaving the core as small as
 possible.
@@ -25,6 +23,6 @@ As for now, the official plugins are:
 
 - `plugin-data-persistence`
   ([repo](https://github.com/lyrasearch/plugin-data-persistence),
-  [docs](/plugins/plugin-data-persistence))
+  [docs](/docs/plugins/plugin-data-persistence))
 - `plugin-astro` ([repo](https://github.com/lyrasearcg/plugin-astro),
-  [docs](/plugins/plugin-astro))
+  [docs](/docs/plugins/plugin-astro))

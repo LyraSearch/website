@@ -4,8 +4,6 @@ title: Getting Started with Lyra
 metaTitle: How to get started with Lyra
 ---
 
-# Getting Started with Lyra
-
 Lyra is an **immutable, runtime-agnostic, edge and in-memory full-text search
 engine** capable of working both on client and server.
 

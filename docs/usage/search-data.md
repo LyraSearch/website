@@ -4,13 +4,6 @@ title: 'Search Data'
 metaTitle: 'How to search data into a Lyra instance'
 ---
 
-# Search Data
-
-export const Highlight = ({children, color}) => ( <span style={{
-backgroundColor: color, borderRadius: '8px', color: '#fff', padding: '10px',
-cursor: 'pointer', }} > {children}
-</span> );
-
 > With the current version of Lyra, only type `string` properties are
 > searchable, however this does not prevent the adding of different types of
 > properties. Lyra will keep them in memory and send the entire document back
@@ -20,41 +13,44 @@ cursor: 'pointer', }} > {children}
 
 Let's say we have a database that contains some elements:
 
-```js title="lyra.js"
-import { create, insert, search } from '@lyrasearch/lyra'; 
+```js
+import { create, insert, search } from "@lyrasearch/lyra";
 
 const movieDB = create({
   schema: {
-    title: 'string',
-    director: 'string',
-    plot: 'string',
-    year: 'number',
-    isFavorite: 'boolean'
-  }
+    title: "string",
+    director: "string",
+    plot: "string",
+    year: "number",
+    isFavorite: "boolean",
+  },
 });
 
 const { id: thePrestige } = insert(movieDB, {
-  title: 'The prestige',
-  director: 'Christopher Nolan',
-  plot: 'Two friends and fellow magicians become bitter enemies after a sudden tragedy. As they devote themselves to this rivalry, they make sacrifices that bring them fame but with terrible consequences.',
+  title: "The prestige",
+  director: "Christopher Nolan",
+  plot:
+    "Two friends and fellow magicians become bitter enemies after a sudden tragedy. As they devote themselves to this rivalry, they make sacrifices that bring them fame but with terrible consequences.",
   year: 2006,
-  isFavorite: true
+  isFavorite: true,
 });
 
 const { id: bigFish } = insert(movieDB, {
-  title: 'Big Fish',
-  director: 'Tim Burton',
-  plot: 'Will Bloom returns home to care for his dying father, who had a penchant for telling unbelievable stories. After he passes away, Will tries to find out if his tales were really true.',
+  title: "Big Fish",
+  director: "Tim Burton",
+  plot:
+    "Will Bloom returns home to care for his dying father, who had a penchant for telling unbelievable stories. After he passes away, Will tries to find out if his tales were really true.",
   year: 2004,
-  isFavorite: true
+  isFavorite: true,
 });
 
 const { id: harryPotter } = insert(movieDB, {
-  title: 'Harry Potter and the Philosopher\'s Stone',
-  director: 'Chris Columbus',
-  plot: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.',
+  title: "Harry Potter and the Philosopher's Stone",
+  director: "Chris Columbus",
+  plot:
+    "Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.",
   year: 2001,
-  isFavorite: false
+  isFavorite: false,
 });
 ```
 
@@ -84,7 +80,7 @@ The object that defines our query, in this case
 `{term: 'Harry', properties: '*'}`, can be shaped, by setting additional
 properties (filters), to **"tighten"** or **"loosen"** our query.
 
-### <Highlight color="#ff5b9b">Term</Highlight>
+### Term
 
 The `term` property specifies the `word` to be searched.
 
@@ -96,7 +92,7 @@ const searchResult = search(movieDB, {
 
 We are searching for all the documents that contain the word `Chris`.
 
-### <Highlight color="#ff5b9b">Properties</Highlight>
+### Properties
 
 The `properties` property defines in which property to run our query.
 
@@ -123,7 +119,7 @@ const searchResult = search(movieDB, {
 
 </details>
 
-### <Highlight color="#ff5b9b">Exact</Highlight>
+### Exact
 
 The `exact` property finds all the document with an exact match of the `term`
 property.
@@ -142,7 +138,7 @@ We are searching for all the documents that contain **`exactly`** the word
 > Without the `exact` property, for example, the term `Christopher Nolan` would
 > be returned as well, as it contains the word `Chris`.
 
-### <Highlight color="#ff5b9b">Tolerance</Highlight>
+### Tolerance
 
 The `tolerance` property allows to specify the maximum distance (following the
 levenshtein algorithm) between the term and the searchable property.
@@ -162,13 +158,11 @@ const searchResult = search(movieDB, {
 We are searching for all the documents that contain a term with an edit distance
 of `1` (e.g. `Chris`) in the `director` property.
 
-:::caution
+<alert title='Caution' status='warning'>
+Tolerance doesn't work when the "exact" parameter is set to "true".
+</Alert>
 
-`Tolerance` doesn't work together with the `exact` parameter
-
-:::
-
-### <Highlight color="#ff5b9b">Limit</Highlight>
+### Limit
 
 The `limit` property limits the result at the specified number.
 
@@ -183,7 +177,7 @@ const searchResult = search(movieDB, {
 We are searching for the `first` document that contains the term `Chris` in the
 `director` property.
 
-### <Highlight color="#ff5b9b">Offset</Highlight>
+### Offset
 
 The `offset` property paginates the results.
 
@@ -198,7 +192,7 @@ const searchResult = search(movieDB, {
 We are searching for all the document that contain the term `Chris` in the
 `director` property, but returning the document at offset `1`.
 
-### <Highlight color="#ff5b9b">Defaults</Highlight>
+### Defaults
 
 By default, Lyra limits the search results to `10`, without any offset (so, `0`
 as offset value).
