@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm generate:db && next dev",
-    "build": "npm generate:db && next build",
+    "dev": "npm run generate:db && next dev",
+    "build": "npm run generate:db && next build",
     "start": "next start",
     "generate:db": "node ./lyra/build-db.js",
     "lint": "ts-standard --fix"
