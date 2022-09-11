@@ -16,7 +16,8 @@ function getDefaultSearchTerm () {
     'dance',
     'sun',
     'christmas',
-    'colors'
+    'colors',
+    'life'
   ]
 
   return defaultSearchTerms[Math.floor(Math.random() * defaultSearchTerms.length)]
@@ -48,7 +49,7 @@ export const ShortDemo = () => {
   function performSearch (term: string) {
     const searchData = search(db, {
       term,
-      limit: 4,
+      limit: 3,
       offset: 0,
       exact: false,
       properties: ['title']
@@ -79,14 +80,14 @@ export const ShortDemo = () => {
 
   return (
     <Box>
-      <Box w='xl' m='auto'>
+      <Box w='full' m='auto'>
         <Input
           disabled={!ready}
           value={term}
           onChange={(ev) => setTerm(ev.target.value)}
           m='auto'
           type='text'
-          w='xl'
+          w='full'
           placeholder='Search for a recent movie'
           bgColor='whiteAlpha.500'
         />
@@ -96,10 +97,10 @@ export const ShortDemo = () => {
         {count} total results in {elapsed}
       </Box>
 
-      <Box display='grid' gridTemplateColumns='repeat(4, 1fr)' gap='4' mt='4'>
+      <Box display='grid' gridTemplateColumns='repeat(3, 1fr)' gap='4' mt='4'>
 
         {!ready && (
-          [1, 2, 3, 4].map((i) => (
+          [1, 2, 3].map((i) => (
             <Box key={i} p='4' h='80' rounded='lg' bgColor='white'>
               <Skeleton rounded='md' w='full' h='full' />
             </Box>
