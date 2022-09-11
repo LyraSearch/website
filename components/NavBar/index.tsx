@@ -33,7 +33,7 @@ const PageLink: FC<PageLinkProps> = ({ href, label }) => (
 
 export const NavBar: FC<{}> = () => {
   return (
-    <Box width='full' pos='fixed' zIndex='banner'>
+    <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px'>
       <Box maxW='container.xl' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
         <Link href='/' passHref>
           <a>

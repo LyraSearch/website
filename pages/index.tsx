@@ -1,9 +1,44 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { Image } from '@chakra-ui/react'
-import { Box, Heading, Text } from '@chakra-ui/layout'
+import { Image, Tooltip } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/layout'
 import { ShortDemo } from '../components/ShortDemo'
 import GitHubButton from 'react-github-btn'
+
+const supportedRuntimes = [
+  {
+    name: 'AWS Lambda@Edge',
+    image: '/misc/runtimes/aws-lambda-edge.svg'
+  },
+  {
+    name: 'Bun',
+    image: '/misc/runtimes/bun.svg'
+  },
+  {
+    name: 'Cloudflare Workers',
+    image: '/misc/runtimes/cloudflare-workers.svg'
+  },
+  {
+    name: 'Deno',
+    image: '/misc/runtimes/deno.svg'
+  },
+  {
+    name: 'Browsers',
+    image: '/misc/runtimes/javascript.svg'
+  },
+  {
+    name: 'Netlify Functions',
+    image: '/misc/runtimes/netlify-functions.svg'
+  },
+  {
+    name: 'Node.js',
+    image: '/misc/runtimes/node-js.svg'
+  },
+  {
+    name: 'React Native',
+    image: '/misc/runtimes/react-native.svg'
+  },
+]
 
 const Home: NextPage = () => {
   const definitions = ['edge', 'offline', 'embedded', 'universal']
@@ -68,6 +103,7 @@ const Home: NextPage = () => {
               Its main focus is to be able to run on edge networks, such as <b>AWS Lambda@Edge</b>, <b>Cloudflare Workers</b>, and <b>Netlify Functions</b>, so expect some updates on that.<br /><br />
 
               Given that it's written in TypeScript, it can be used in <b>any</b> JavaScript runtime, including browsers, servers, React Native, and more.<br /><br />
+
               It was named after the Lyra constellation due to its distributed and highly scalable nature.
             </Text>
           </Box>
@@ -76,6 +112,27 @@ const Home: NextPage = () => {
             <ShortDemo />
           </Box>
         </Box>
+      </Box>
+
+      <Box w='full' mt='20'>
+        <Box w='container.xl' m='auto' pb='20'>
+          <Heading textAlign='center'> Runs everywhere </Heading>
+          <Grid templateColumns='repeat(8, 1fr)' mt='10'>
+            {supportedRuntimes.map((runtime) => (
+              <Box key={runtime.name}>
+                <Tooltip hasArrow label={runtime.name} placement='top'>
+                  <Image
+                    src={runtime.image}
+                    alt={runtime.name}
+                    w='44'
+                  />
+                </Tooltip>
+              </Box>
+            ))}
+          </Grid>
+          <Text textAlign='center' mt='10'> ...and any other JavaScript runtime. </Text>
+        </Box>
+
       </Box>
     </>
   )
