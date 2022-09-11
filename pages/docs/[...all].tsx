@@ -75,7 +75,7 @@ const Docs: FC<DocsProps> = ({ data, content, paths }) => {
           {data.badges?.length && (
             <Box display='flex' mb='10'>
               {(data.badges as unknown as any[]).map((badge) => (
-                <Text as='a' mr='4' href={badge.url} target='_blank'>
+                <Text key={badge.url} as='a' mr='4' href={badge.url} target='_blank'>
                   <img src={badge.image} alt={badge.label} />
                 </Text>
               ))}
@@ -111,12 +111,9 @@ const Docs: FC<DocsProps> = ({ data, content, paths }) => {
                 )
               },
               blockquote: ({ node, ...props }) => {
-                console.log(node, props)
-
                 return <Box as='blockquote' borderLeft='4px solid #e2e8f0' pl='4' children={<Box as='i' children={props.children} />} />
               },
               a: ({ node, ...props }) => {
-                console.log({ node, props })
                 if ((props.href)?.startsWith('/') || (props.href)?.startsWith('#')) {
                   return <Link href={props.href} passHref><Text as='a' href={props.href}>{props.children[0]}</Text></Link>
                 } else {
