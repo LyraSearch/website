@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import Link from 'next/link'
 import { Image } from '@chakra-ui/image'
 import { Box, Text } from '@chakra-ui/layout'
+import { NavSearch } from '../NavSearch'
 
 interface PageLinkProps {
   href: string
@@ -18,8 +19,8 @@ const pages: PageLinkProps[] = [
     label: 'About'
   },
   {
-    href: '/team',
-    label: 'Team'
+    href: '/contribute',
+    label: 'Contribute'
   }
 ]
 
@@ -45,8 +46,9 @@ export const NavBar: FC<{}> = () => {
           </a>
         </Link>
 
-        <Box>
+        <Box display='flex' alignItems='center' h='full'>
           {pages.map((page) => <PageLink key={page.href} {...page} />)}
+          <NavSearch />
         </Box>
       </Box>
     </Box>
