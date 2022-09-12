@@ -1,6 +1,7 @@
 ---
 title: Data Persistence Plugin
-metaTitle: Persisting data in JSON, dpack, messagepack with Lyra
+description: Persisting data in JSON, dpack, messagepack with Lyra
+sidebar_position: 2
 badges:
   - label: npm
     url: https://www.npmjs.com/package/@lyrasearch/plugin-data-persistence

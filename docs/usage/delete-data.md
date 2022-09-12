@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: 'Delete Data'
-metaTitle: 'How to delete data from a Lyra instance'
+description: 'How to delete data from a Lyra instance'
 ---
 
 Deletion is one of the easiest things to do in Lyra.<br/> Let's say we have the

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: 'Creating a new Lyra instance'
-metaTitle: 'How to create a new Lyra instance from scratch'
+description: 'How to create a new Lyra instance from scratch'
 ---
 
 Creating a new instance is very simple.

@@ -8,13 +8,14 @@ import ReactMarkdown from 'react-markdown'
 import slugify from 'slugify'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
-import { getAllPosts, getPostContent } from '../../utils/docs/server-side'
+import { getAllPosts, getPostContent, getAllPostsWithContent, PostsBySection } from '../../utils/docs/server-side'
 import { DocsVerticalNav } from '../../components/DocsVerticalNav'
 import { Alert, AlertIcon } from '@chakra-ui/react'
 interface DocsProps {
   data: { [key: string]: string }
   content: string
   paths: string[]
+  posts: PostsBySection
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -27,12 +28,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data, content } = await getPostContent(params!)
+  const posts = await getAllPostsWithContent()
   const paths = await getAllPosts()
   return {
     props: {
       data,
       content,
-      paths
+      paths,
+      posts
     }
   }
 }
@@ -63,12 +66,12 @@ function createLink ({ props, size }: any) {
   )
 }
 
-const Docs: FC<DocsProps> = ({ data, content, paths }) => {
+const Docs: FC<DocsProps> = ({ data, content, posts }) => {
   return (
     <Box w='container.xl' m='auto' pt='36'>
       <Grid gridTemplateColumns='30% 1fr' gridGap='10'>
         <GridItem>
-          <DocsVerticalNav paths={paths} />
+          <DocsVerticalNav posts={posts} />
         </GridItem>
         <GridItem maxW='full'>
           <Heading as='h1' mb='3'> {data.title} </Heading>
@@ -142,7 +145,7 @@ const Docs: FC<DocsProps> = ({ data, content, paths }) => {
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
             children={content}
-          />;
+          />
         </GridItem>
         <GridItem />
       </Grid>

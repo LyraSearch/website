@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import { extendTheme, Box, ChakraProvider } from '@chakra-ui/react'
 import { NavBar } from '../components/NavBar'
+import { Footer } from '../components/Footer'
 
 import '@fontsource/roboto/100.css'
 import '@fontsource/roboto/400.css'
@@ -25,6 +26,7 @@ function MyApp ({ Component, pageProps }: AppProps) {
       <Box w='full' bgColor='darkBg' style={{ minHeight: '100vh' }} color='gray.200'>
         <NavBar />
         <Component {...pageProps} />
+        <Footer />
       </Box>
     </ChakraProvider>
   )

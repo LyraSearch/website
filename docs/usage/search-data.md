@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: 'Search Data'
-metaTitle: 'How to search data into a Lyra instance'
+description: 'How to search data into a Lyra instance'
 ---
 
 > With the current version of Lyra, only type `string` properties are

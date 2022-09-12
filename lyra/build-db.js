@@ -48,7 +48,7 @@ async function createDatabase () {
   for (const doc of data) {
     insert(db, {
       title: doc.title,
-      description: doc.metaTitle,
+      description: doc.description,
       slug: doc.slug,
       content: doc.content
     })

@@ -1,6 +1,7 @@
 ---
 title: Astro Plugin
-metaTitle: Integrating Lyra with Astro
+description: Integrating Lyra with Astro
+sidebar_position: 3
 badges:
   - label: npm
     url: https://www.npmjs.com/package/@lyrasearch/plugin-astro

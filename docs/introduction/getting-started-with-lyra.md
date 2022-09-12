@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Getting Started with Lyra
-metaTitle: How to get started with Lyra
+description: How to get started with Lyra
 ---
 
 Lyra is an **immutable, runtime-agnostic, edge and in-memory full-text search

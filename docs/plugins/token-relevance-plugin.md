@@ -1,6 +1,7 @@
 ---
 title: Token relevance plugin (TF-IDF)
-metaTitle: Lyra plugin to get TF-IDF scores from indexes
+description: Lyra plugin to get TF-IDF scores from indexes
+sidebar_position: 4
 badges:
   - label: npm
     url: https://www.npmjs.com/package/@lyrasearch/plugin-token-relevance

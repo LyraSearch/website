@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: 'Insert Data'
-metaTitle: 'How to insert data into a new Lyra instance'
+description: 'How to insert data into a new Lyra instance'
 ---
 
 Whenever we create a database with Lyra we must specify a `Schema`, which

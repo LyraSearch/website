@@ -1,6 +1,7 @@
 ---
 title: Plugin system
-metaTitle: How the Lyra plugin system works
+description: How the Lyra plugin system works
+sidebar_position: 1
 ---
 
 Since the beginning of the project, Lyra has been developed thinking of a simple
