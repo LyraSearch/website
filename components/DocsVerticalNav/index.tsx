@@ -10,7 +10,6 @@ interface DocsVerticalNavProps {
 
 export const DocsVerticalNav: FC<DocsVerticalNavProps> = ({ posts }) => {
   const sections = Object.keys(posts)
-  console.log(posts)
 
   return (
     <Box pos='sticky' top='36' borderRight='1px' borderColor='gray.700' pr='10'>

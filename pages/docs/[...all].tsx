@@ -1,6 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import { FC } from 'react'
-import { Box, Code, Grid, GridItem, Text, Heading } from '@chakra-ui/layout'
+import { Box, Code, Grid, GridItem, Text, Heading, Divider } from '@chakra-ui/layout'
 import { anOldHope as ColorScheme } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import Link from 'next/link'
@@ -123,14 +123,14 @@ const Docs: FC<DocsProps> = ({ data, content, posts }) => {
                   return <Text as='a' href={props.href} target='_blank' color='pink.500' _hover={{ textDecor: 'underline' }} transition='ease 0.3s'> {props.href} </Text>
                 }
               },
-              hr: () => <Box w='100%' h='1px' bg='gray.700' my='5' />,
+              hr: () => <Divider my='10' />,
               code: ({ inline, children }) => {
                 if (inline) {
                   return <Code bgColor='gray.700' color='whiteAlpha.800'> {children} </Code>
                 }
 
                 return (
-                  <Box my='4' maxW='full' overflowX='auto'>
+                  <Box maxW='container.md' m='auto' my='8' overflowX='auto'>
                     <SyntaxHighlighter wrapLines language='javascript' style={ColorScheme} customStyle={{ borderRadius: '5px' }}>
                       {children[0]!.toString()}
                     </SyntaxHighlighter>

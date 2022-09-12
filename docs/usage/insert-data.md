@@ -4,7 +4,7 @@ title: 'Insert Data'
 description: 'How to insert data into a new Lyra instance'
 ---
 
-Whenever we create a database with Lyra we must specify a `Schema`, which
+Whenever we create a database with Lyra we must specify a `schema`, which
 represents the entry we are going to insert.
 
 Our database and schema look like this:
