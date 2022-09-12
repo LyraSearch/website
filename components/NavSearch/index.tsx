@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { search, SearchResult, formatNanoseconds } from '@lyrasearch/lyra'
 import { Box, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
@@ -11,6 +12,15 @@ export const NavSearch = () => {
   const [results, setResults] = useState<Array<SearchResult<any>>>([])
   const [elapsed, setElapsed] = useState('')
   const [number, setNumber] = useState(0)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    setTerm('')
+    setResults([])
+    setElapsed('')
+    setNumber(0)
+  }, [router.asPath])
 
   useEffect(() => {
     const searchResults = search(db, {

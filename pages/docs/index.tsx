@@ -31,7 +31,7 @@ export default function Docs (props: DocsProps) {
           <GridItem key={section}>
             <Text as='h2' fontSize='2xl' fontWeight='bold' textTransform='capitalize' mb='5'> {section} </Text>
             <Stack spacing='4'>
-              {posts[section].sort((x, y) => x.sidebar_position > y.sidebar_position ? -1 : 1).map((post) => (
+              {posts[section].docs.map((post) => (
                 <Link href={post.slug} key={post.slug} passHref>
                   <Text as='a'>
                     <Box p='4' bgColor='gray.900' rounded='lg' transition='ease 0.3s' _hover={{ shadow: 'dark-lg', bgColor: 'gray.800' }}>

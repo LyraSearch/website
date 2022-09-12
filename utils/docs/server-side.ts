@@ -16,7 +16,12 @@ export interface PostWithContent {
 }
 
 export interface PostsBySection {
-  [section: string]: PostWithContent[]
+  [section: string]: {
+    position: number
+    title: string
+    description: string
+    docs: PostWithContent[]
+  }
 }
 
 export async function getAllPosts () {
@@ -27,6 +32,8 @@ export async function getAllPosts () {
 
 export async function getAllPostsWithContent (): Promise<PostsBySection> {
   const posts = await glob(path.join(process.cwd(), '/docs/**/*.md'))
+  const meta = await glob(path.join(process.cwd(), '/docs/**/__meta.json'))
+
   const data = await Promise.all(posts.map(async (post) => {
     const file = await fs.promises.readFile(post, 'utf8')
     const { data, content } = matter(file)
@@ -41,22 +48,39 @@ export async function getAllPostsWithContent (): Promise<PostsBySection> {
     }
   }))
 
-  const groupDocsBySection = data.reduce<any>((acc, doc) => {
+  const groupDocsBySection = await data.reduce<any>((acc, doc) => {
     const { section } = doc
+    const sectionMeta = meta.find((m) => m.includes(section))
+    const sectionMetaContent = fs.readFileSync(path.join(process.cwd(), sectionMeta!), 'utf8')
+
     if (!acc[section]) {
-      acc[section] = []
+      acc[section] = {
+        ...JSON.parse(sectionMetaContent),
+        docs: []
+      }
     }
-    acc[section].push(doc)
+
+    acc[section].docs.push(doc)
     return acc
   }, {})
 
   Object.keys(groupDocsBySection).forEach((section) => {
-    groupDocsBySection[section].sort((a: any, b: any) => {
+    groupDocsBySection[section].docs.sort((a: any, b: any) => {
       return a.data.sidebar_position - b.data.sidebar_position
     })
   })
 
-  return groupDocsBySection as PostsBySection
+  const orderedSections = Object.keys(groupDocsBySection).sort((a, b) => {
+    return groupDocsBySection[a].position - groupDocsBySection[b].position
+  })
+
+  const orderedSectionsObject = orderedSections.reduce((acc, section) => {
+    // @ts-expect-error
+    acc[section] = groupDocsBySection[section]
+    return acc
+  }, {})
+
+  return orderedSectionsObject as PostsBySection
 }
 
 export async function getPostContent (params: ParsedUrlQuery) {

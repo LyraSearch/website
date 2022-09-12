@@ -1004,10 +1004,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@lyrasearch/lyra@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@lyrasearch/lyra/-/lyra-0.2.3.tgz#991cec1e46ffc3d7c1db30b4e172669cb65a8f70"
-  integrity sha512-rKKiUBO+3Wof+xZnzPTLfJlN50YY5DMT1fwXhA1b29LD2reiC9r+RZuUqxY0o5RhpesYb7ga7voX6u1mfPhCiA==
+"@lyrasearch/lyra@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@lyrasearch/lyra/-/lyra-0.2.4.tgz#982090699103e55c80d367dd3b5c64ae6c068237"
+  integrity sha512-yTWq0wFv+DylA+2FNGnUck11u0BBvQI+TMv00OZ+Q3pldbZiy3Ps05rHvPgwbGQDtHGQ1nri8ZHz55enZ8vqNQ==
 
 "@lyrasearch/plugin-data-persistence@^0.0.2":
   version "0.0.2"

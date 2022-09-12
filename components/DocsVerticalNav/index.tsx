@@ -22,7 +22,7 @@ export const DocsVerticalNav: FC<DocsVerticalNavProps> = ({ posts }) => {
             </AccordionButton>
             <AccordionPanel>
               <Stack>
-                {posts[section].map((post) => (
+                {posts[section].docs.map((post) => (
                   <Link href={post.slug} key={post.slug} passHref>
                     <Text as='a' p='2' rounded='md' _hover={{ bg: 'gray.600' }} transition='ease 0.3s'>{post.data.title}</Text>
                   </Link>

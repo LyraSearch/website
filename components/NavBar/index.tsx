@@ -15,10 +15,6 @@ const pages: PageLinkProps[] = [
     label: 'Docs'
   },
   {
-    href: '/about',
-    label: 'About'
-  },
-  {
     href: '/contribute',
     label: 'Contribute'
   }
@@ -26,7 +22,7 @@ const pages: PageLinkProps[] = [
 
 const PageLink: FC<PageLinkProps> = ({ href, label }) => (
   <Link href={href} passHref>
-    <Text as='a' textTransform='uppercase' ml='4' _hover={{ color: 'gray.400' }}>
+    <Text as='a' textTransform='uppercase' ml='4' _hover={{ textDecor: 'underline' }}>
       {label}
     </Text>
   </Link>

@@ -17,7 +17,7 @@
     "@emotion/styled": "^11.10.4",
     "@fontsource/inter": "^4.5.12",
     "@fontsource/roboto": "^4.5.8",
-    "@lyrasearch/lyra": "^0.2.3",
+    "@lyrasearch/lyra": "^0.2.4",
     "@lyrasearch/plugin-data-persistence": "^0.0.2",
     "@mdx-js/loader": "^2.1.3",
     "@mdx-js/react": "^2.1.3",
