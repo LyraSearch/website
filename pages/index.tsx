@@ -5,6 +5,7 @@ import { Box, Grid, GridItem, Heading, Text } from "@chakra-ui/layout";
 import { ShortDemo } from "../components/ShortDemo";
 import GitHubButton from "react-github-btn";
 import { FloatingLogo } from "../components/FloatingLogo";
+import Head from "next/head";
 
 /* TODO?: Add links to projects */
 const supportedRuntimes = [
@@ -58,6 +59,14 @@ const Home: NextPage = () => {
 
   return (
     <Box>
+      <Head>
+        <title>Lyra</title>
+        <meta
+          name="description"
+          content="Lyra is a modern, dependency-free full-text search engine written in TypeScript.
+          It has been built with speed in mind and completes most search lookups in a few microseconds."
+        />
+      </Head>
       <Show above="sm">
         <Box
           pos="absolute"
@@ -85,7 +94,7 @@ const Home: NextPage = () => {
           justifyContent="center"
           label="XXXX"
         >
-          <Heading fontSize="6xl" color="gray.100" lineHeight="1">
+          <Heading fontSize={["5xl", "6xl"]} color="gray.100" lineHeight="1">
             The{" "}
             <Text
               as="span"
@@ -97,7 +106,7 @@ const Home: NextPage = () => {
             <br />
             search experience
           </Heading>
-          <Text as="p" fontSize="xl" color="gray.400" mt="3">
+          <Text as="p" fontSize="xl" color="gray.400" mt="5">
             Lyra is a fully-featured full-text search engine that runs wherever
             JavaScript runs, including browsers, servers, React Native, edge
             networks, and more.
@@ -204,7 +213,6 @@ const Home: NextPage = () => {
   );
 };
 
-import React from "react";
 type Props = {};
 export const Runtimes: React.FC<Props> = () => {
   const runtimesPerRow = useBreakpointValue({
