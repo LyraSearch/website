@@ -4,6 +4,7 @@ import { Image, Show, Tooltip, useBreakpointValue } from "@chakra-ui/react";
 import { Box, Grid, GridItem, Heading, Text } from "@chakra-ui/layout";
 import { ShortDemo } from "../components/ShortDemo";
 import GitHubButton from "react-github-btn";
+import { FloatingLogo } from "../components/FloatingLogo";
 
 /* TODO?: Add links to projects */
 const supportedRuntimes = [
@@ -54,11 +55,6 @@ const Home: NextPage = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const runtimesPerRow = useBreakpointValue({
-    base: 4,
-    sm: 8,
-  });
 
   return (
     <Box>
@@ -165,6 +161,8 @@ const Home: NextPage = () => {
           flexDirection="column"
         >
           <Box>
+            {/* TODO: bullet points with core features instead of wall of text (move that text in docs if not already there) */}
+
             <Heading mb="10"> Why Lyra? </Heading>
             <Text textAlign="justify">
               Lyra is a modern, dependency-free full-text search engine written
@@ -199,28 +197,58 @@ const Home: NextPage = () => {
         </Box>
       </Box>
 
-      <Box w="full" mt={["0", "20"]}>
-        <Box w="container" m="auto" pb="20">
-          <Heading mb={["3", "10"]} textAlign="center">
-            Runs everywhere
-          </Heading>
-          <Grid
-            px={["4", "0"]}
-            templateColumns={`repeat(${runtimesPerRow}, 1fr)`}
-          >
-            {supportedRuntimes.map((runtime) => (
-              <Box key={runtime.name}>
-                <Tooltip hasArrow label={runtime.name} placement="top">
-                  <Image src={runtime.image} alt={runtime.name} w="44" />
-                </Tooltip>
-              </Box>
-            ))}
-          </Grid>
-          <Text textAlign="center" mt="10">
-            {" "}
-            ...and any other JavaScript runtime.{" "}
-          </Text>
-        </Box>
+      <Runtimes />
+
+      <FloatingRuntimes />
+    </Box>
+  );
+};
+
+import React from "react";
+type Props = {};
+export const Runtimes: React.FC<Props> = () => {
+  const runtimesPerRow = useBreakpointValue({
+    base: 4,
+    sm: 8,
+  });
+  return (
+    <Box w="full" mt={["0", "20"]}>
+      <Box w="container" m="auto" pb="20">
+        <Heading mb={["3", "10"]} textAlign="center">
+          Runs everywhere
+        </Heading>
+        <Grid
+          px={["4", "0"]}
+          templateColumns={`repeat(${runtimesPerRow}, 1fr)`}
+        >
+          {supportedRuntimes.map((runtime) => (
+            <Box key={runtime.name}>
+              <Tooltip hasArrow label={runtime.name} placement="top">
+                <Image src={runtime.image} alt={runtime.name} w="44" />
+              </Tooltip>
+            </Box>
+          ))}
+        </Grid>
+        <Text textAlign="center" mt={["4", "10"]}>
+          {" "}
+          ...and any other JavaScript runtime.{" "}
+        </Text>
+      </Box>
+    </Box>
+  );
+};
+
+export const FloatingRuntimes: React.FC<Props> = () => {
+  return (
+    <Box w="full" mt={["0", "20"]}>
+      <Box w="container" m="auto" pb="20">
+        <Heading fontSize={["4xl", "3xl"]} mb={["3", "10"]} textAlign="center">
+          Runs everywhere
+        </Heading>
+        <FloatingLogo />
+        <Text fontSize="lg" textAlign="center" mt={["4", "10"]}>
+          ...and any other JavaScript runtime.{" "}
+        </Text>
       </Box>
     </Box>
   );

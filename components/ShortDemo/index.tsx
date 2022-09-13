@@ -10,7 +10,7 @@ import {
   formatNanoseconds,
 } from "@lyrasearch/lyra";
 import { Skeleton } from "@chakra-ui/skeleton";
-import { useBreakpointValue } from "@chakra-ui/react";
+import { Heading, useBreakpointValue } from "@chakra-ui/react";
 
 function getDefaultSearchTerm() {
   const defaultSearchTerms = [
@@ -100,10 +100,15 @@ export const ShortDemo = () => {
 
   return (
     <Box>
-      <Box bg="pink" mt="12" mb="4">
-        SAY IS A DEMO HERE AND ADD A Very small (font) description
-        {/* TODO: use a different BG for demo to make it pop clear is another section */}
-      </Box>
+      <Heading mt="10" mb="2">
+        Demo
+      </Heading>
+      <Text mb="6">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+        possimus!
+      </Text>
+      {/* TODO: use a different BG for demo to make it pop clear is another section */}
+      {/* SAY IS A DEMO HERE AND ADD A Very small (font) description */}
       <Box w="full" m="auto">
         <Input
           disabled={!ready}
