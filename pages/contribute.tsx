@@ -11,6 +11,7 @@ import {
 import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 
 import team from "../data/team.json";
+import Head from "next/head";
 
 export default function Contribute() {
   return (
@@ -20,6 +21,14 @@ export default function Contribute() {
       pt={["24", "40"]}
       px="6"
     >
+      <Head>
+        <title>Contribute to Lyra</title>
+        <meta
+          name="description"
+          content="Lyra is free and open-source, join the community and help us build
+            the best search engine out there!"
+        />
+      </Head>
       <Box maxW="container.xl" m="auto">
         <Heading as="h1" fontSize="4xl" textAlign="center">
           Contribute to Lyra
