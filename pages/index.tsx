@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { Image, Show, Tooltip } from "@chakra-ui/react";
+import { Image, Show, Tooltip, useBreakpointValue } from "@chakra-ui/react";
 import { Box, Grid, GridItem, Heading, Text } from "@chakra-ui/layout";
 import { ShortDemo } from "../components/ShortDemo";
 import GitHubButton from "react-github-btn";
@@ -54,6 +54,11 @@ const Home: NextPage = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const runtimesPerRow = useBreakpointValue({
+    base: 4,
+    sm: 8,
+  });
 
   return (
     <Box>
@@ -196,8 +201,13 @@ const Home: NextPage = () => {
 
       <Box w="full" mt={["0", "20"]}>
         <Box w="container" m="auto" pb="20">
-          <Heading textAlign="center"> Runs everywhere </Heading>
-          <Grid templateColumns="repeat(8, 1fr)" mt="10">
+          <Heading mb={["3", "10"]} textAlign="center">
+            Runs everywhere
+          </Heading>
+          <Grid
+            px={["4", "0"]}
+            templateColumns={`repeat(${runtimesPerRow}, 1fr)`}
+          >
             {supportedRuntimes.map((runtime) => (
               <Box key={runtime.name}>
                 <Tooltip hasArrow label={runtime.name} placement="top">
