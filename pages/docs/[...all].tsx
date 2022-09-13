@@ -68,7 +68,7 @@ function createLink ({ props, size }: any) {
 
 const Docs: FC<DocsProps> = ({ data, content, posts }) => {
   return (
-    <Box w='container.xl' m='auto' pt='36'>
+    <Box w='container.xl' minH='container.lg' m='auto' pt='36'>
       <Grid gridTemplateColumns='30% 1fr' gridGap='10'>
         <GridItem>
           <DocsVerticalNav posts={posts} />
