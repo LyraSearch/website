@@ -1,21 +1,20 @@
-import { Container } from "../components/Container";
 import { LyraDemo } from "../components/Demo";
 
 export default function Demo() {
   return (
-    <Container size="full" className='bg-violet-900'>
+    <div className='bg-violet-900 container-full'>
       <div className="h-[400px] pt-10">
-        <Container size="lg" className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center h-full container-lg">
           <h1 className="text-4xl font-black"> Try Lyra </h1>
           <p>Type a search term to perform a full-text search on a dataset of 37,859 historical events.</p>
-        </Container>
+        </div>
       </div>
 
-      <Container size="full" className="bg-violet-600 py-20">
-        <Container size="lg" className="min-h-[300px]">
+      <div className="bg-violet-600 py-20 container-full">
+        <div className="min-h-[300px] container-lg">
           <LyraDemo />
-        </Container>
-      </Container>
-    </Container>
+        </div>
+      </div>
+    </div>
   )
 }

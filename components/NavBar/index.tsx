@@ -1,10 +1,5 @@
-import s from "./navbar.module.css";
-
 import { useState } from "react";
-import cn from "classnames";
 import Link from "next/link";
-import { AiFillGithub } from "react-icons/ai";
-import { Container } from "../Container";
 import { MenuIcon } from "../Icons";
 
 const pages = [
@@ -34,7 +29,7 @@ const GitHubLink = () => (
     rel="noreferrer"
     className="hover:text-slate-300"
   >
-    <AiFillGithub className="w-5 h-5" />
+    <div className="i-akar-icons:github-fill block" w="5" h="5" />
   </a>
 );
 
@@ -44,8 +39,8 @@ export function NavBar() {
   const toggleMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
   return (
-    <div className={s.navbar}>
-      <Container>
+    <div position-fixed w-full z-20 backdrop-blur-md>
+      <div className="container-xl">
         <div className="flex justify-between py-6 m-auto">
           <div className="text-3xl font-bold">
             <Link href="/" passHref>
@@ -54,7 +49,7 @@ export function NavBar() {
           </div>
 
           <div className="flex items-center justify-end">
-            <div className={s.desktopNavbar}>
+            <div m="auto" className="hidden" md="flex flex-row items-center">
               {pages.map((page) => (
                 <Link href={page.href} passHref key={page.href}>
                   <a className="mr-4 hover:text-slate-300">{page.name}</a>
@@ -64,7 +59,7 @@ export function NavBar() {
 
             <GitHubLink />
 
-            <div className={s.mobileNavbar}>
+            <div p="l-2" flex="~ flex-col" md="hidden" container>
               <button onClick={toggleMobileNavbar} aria-label="Toggle Menu">
                 <MenuIcon />
               </button>
@@ -76,15 +71,15 @@ export function NavBar() {
         {mobileNavbar && (
           <div className="flex flex-col transition-all duration-300">
             {pages.map((page) => (
-              <div className={s.menuLink} key={page.href}>
-                <Link href={page.href} passHref className={s.menuLink}>
+              <div  key={page.href} flex h="48px" w="full" text-base items-center font-bold className="border-bottom border-solid border-gray-2">
+                <Link href={page.href} passHref flex h="48px" w="full" text-base items-center font-bold className="border-bottom border-solid border-gray-2">
                   <a className="mr-4 hover:text-slate-300">{page.name}</a>
                 </Link>
               </div>
             ))}
           </div>
         )}
-      </Container>
+      </div>
     </div>
   );
 }

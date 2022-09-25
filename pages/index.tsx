@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { useEffect } from 'react'
 import GitHubButton from 'react-github-btn'
 import hljs from 'highlight.js';
-import { Container } from '../components/Container'
 
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/atom-one-dark.css'
@@ -18,8 +17,8 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Container size='full' className='bg-gradient-to-b from-[#150232] to-[#0a0019]'>
-        <Container size='lg' className='flex w-full justify-center items-center py-10 h-screen md:h-[700px]'>
+      <div className='bg-gradient-to-b from-[#150232] to-[#0a0019] container-full'>
+        <div className='flex w-full justify-center items-center py-10 h-screen md:h-[700px] container-lg'>
           <div className='grid gap-10 grid-cols-1 md:grid-cols-2'>
 
             <div className='w-full h-full flex items-center'>
@@ -50,19 +49,19 @@ const Home: NextPage = () => {
             </div>
 
           </div>
-        </Container>
-      </Container>
+        </div>
+      </div>
 
 
-      <Container size='full' className='bg-violet-900'>
-        <Container className='flex flex-col justify-center items-center pt-5 pb-7'>
+      <div className='bg-violet-900 container-full'>
+        <div className='flex flex-col justify-center items-center pt-5 pb-7 container-lg'>
           <p className='mb-2 text-xs'> Built & sponsored by </p>
           <img src='/imgs/sponsors/nearform.svg' className='w-48' />
-        </Container>
-      </Container>
+        </div>
+      </div>
 
-      <Container size='full' className='bg-violet-700 text-slate-100'>
-        <Container size='lg' className='py-20'>
+      <div className='bg-violet-700 text-slate-100 container-full'>
+        <div className='py-20 container-lg'>
           <h2 className='font-bold text-3xl'> Why? </h2>
 
           <div className='grid grid-cols-1 md:grid-cols-[60%_1fr] gap-10'>
@@ -94,9 +93,9 @@ const Home: NextPage = () => {
             </div>
 
           </div>
-        </Container>
+        </div>
 
-        <Container size='lg' className='border-t-2 border-violet-500 py-20'>
+        <div className='border-t-2 border-violet-500 py-20 container-lg'>
           <h2 className='font-bold text-3xl'> Quickstart </h2>
 
           <div>
@@ -184,8 +183,8 @@ const searchResult = search(db, {
               Read the full docs
             </a>
           </div>
-        </Container>
-      </Container>
+        </div>
+      </div>
     </>
   )
 }

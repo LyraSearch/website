@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { create, formatNanoseconds, insert, search } from "@nearform/lyra";
 import dataset from "./events";
-import styles from "./demo.module.css";
 
 interface Hit {
   description: string;
@@ -124,24 +123,24 @@ export function LyraDemo() {
           value={term}
           onChange={e => setTerm(e.target.value)}
           placeholder="Type a search term here..."
-          className={styles.input}
+          className="demo-input"
         />
 
         <div className="grid grid-cols-2 gap-4 mt-4 lg:gap-10 lg:grid-cols-4">
           <div className="grid">
             <label htmlFor="exact" className="font-bold">Exact</label>
-            <select id="exact" value={exact.toString()} onChange={() => setExact(exact => !exact)} className={styles.select}>
+            <select id="exact" value={exact.toString()} onChange={() => setExact(exact => !exact)} className="demo-input">
               <option value={"false"}>No</option>
               <option value={"true"}>Yes</option>
             </select>
           </div>
           <div className="grid">
             <label htmlFor="limit" className="font-bold">Limit</label>
-            <input id="limit" type="number" value={limit} onChange={e => setLimit(parseInt(e.target.value))} className={styles.input} />
+            <input id="limit" type="number" value={limit} onChange={e => setLimit(parseInt(e.target.value))} className="demo-input" />
           </div>
           <div className="grid">
             <label htmlFor="offset" className="font-bold">Offset</label>
-            <input id="offset" type="number" value={offset} onChange={e => setOffset(parseInt(e.target.value))} className={styles.input} />
+            <input id="offset" type="number" value={offset} onChange={e => setOffset(parseInt(e.target.value))} className="demo-input" />
           </div>
           <div className="grid">
             <label htmlFor="tolerance" className="font-bold">Typo tolerance</label>
@@ -152,7 +151,7 @@ export function LyraDemo() {
               max={3}
               min={0}
               onChange={e => setTolerance(parseInt(e.target.value))}
-              className={styles.input}
+              className="demo-input"
             />
           </div>
         </div>
