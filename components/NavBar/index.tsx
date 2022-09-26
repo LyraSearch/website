@@ -29,7 +29,7 @@ const GitHubLink = () => (
     rel="noreferrer"
     className="hover:text-slate-300"
   >
-    <div className="i-akar-icons:github-fill block" w="5" h="5" />
+    <div className="i-akar-icons:github-fill" w="5" h="5" />
   </a>
 );
 

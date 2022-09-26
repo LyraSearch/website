@@ -20,21 +20,21 @@ function TeamMember(data: typeof core[0]) {
         {
           data.social.github && (
             <a href={data.social.github} target='_blank' rel="noreferrer" className="mr-4">
-              <div className="i-akar-icons:github-fill block" w="5" h="5" />
+              <div className="i-akar-icons:github-fill" w="5" h="5" />
             </a>
           )
         }
         {
           data.social.twitter && (
             <a href={data.social.twitter} target='_blank' rel="noreferrer" className="mr-4">
-              <div className="i-akar-icons:twitter-fill block" w="5" h="5" />
+              <div className="i-akar-icons:twitter-fill" w="5" h="5" />
             </a>
           )
         }
         {
           data.social.linkedin && (
             <a href={data.social.linkedin} target='_blank' rel="noreferrer" className="mr-4">
-              <div className="i-akar-icons:linkedin-fill block" w="5" h="5" />
+              <div className="i-akar-icons:linkedin-fill" w="5" h="5" />
             </a>
           )
         }
