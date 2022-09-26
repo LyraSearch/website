@@ -39,9 +39,9 @@ export function NavBar() {
   const toggleMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
   return (
-    <div position-fixed w-full z-20 backdrop-blur-md>
+    <div w="full" z="20" className="backdrop-blur-md position-fixed">
       <div className="container-xl">
-        <div className="flex justify-between py-6 m-auto">
+        <div p="y-6" m="auto" className="flex justify-between">
           <div className="text-3xl font-bold">
             <Link href="/" passHref>
               <a>✨ Lyra</a>
@@ -52,14 +52,14 @@ export function NavBar() {
             <div m="auto" className="hidden" md="flex flex-row items-center">
               {pages.map((page) => (
                 <Link href={page.href} passHref key={page.href}>
-                  <a className="mr-4 hover:text-slate-300">{page.name}</a>
+                  <a m="r-4" className="hover:text-slate-300">{page.name}</a>
                 </Link>
               ))}
             </div>
 
             <GitHubLink />
 
-            <div p="l-2" flex="~ flex-col" md="hidden" container>
+            <div p="l-2" className="flex flex-col container" md="hidden">
               <button onClick={toggleMobileNavbar} aria-label="Toggle Menu">
                 <MenuIcon />
               </button>
@@ -71,9 +71,9 @@ export function NavBar() {
         {mobileNavbar && (
           <div className="flex flex-col transition-all duration-300">
             {pages.map((page) => (
-              <div  key={page.href} flex h="48px" w="full" text-base items-center font-bold className="border-bottom border-solid border-gray-2">
-                <Link href={page.href} passHref flex h="48px" w="full" text-base items-center font-bold className="border-bottom border-solid border-gray-2">
-                  <a className="mr-4 hover:text-slate-300">{page.name}</a>
+              <div  key={page.href} h="48px" w="full" border="b-1 solid gray-2" className="flex text-base items-center font-bold">
+                <Link href={page.href} passHref h="48px" w="full" border="b-1 solid gray-2" className="flex text-base items-center font-bold ">
+                  <a m="r-4" className="hover:text-slate-300">{page.name}</a>
                 </Link>
               </div>
             ))}
