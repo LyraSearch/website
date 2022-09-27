@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { search, SearchResult, formatNanoseconds } from "@lyrasearch/lyra";
 import {
@@ -7,13 +7,14 @@ import {
   InputGroup,
   InputLeftElement,
   Text,
+  useOutsideClick,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 
 const db = require("../../lyra/db.json");
 
-export const NavSearch = () => {
+export const NavSearchMobile = () => {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState<Array<SearchResult<any>>>([]);
   const [elapsed, setElapsed] = useState("");
@@ -38,6 +39,9 @@ export const NavSearch = () => {
 
     // @ts-expect-error
     setResults(searchResults.hits);
+    if (searchResults.hits.length > 0) {
+      setShowResultsPopup(true);
+    }
     setElapsed(formatNanoseconds(searchResults.elapsed));
     setNumber(searchResults.count);
   }, [term]);
@@ -54,38 +58,69 @@ export const NavSearch = () => {
     };
   });
 
-  return (
-    <Box pos="relative">
-      <InputGroup ml="8">
-        <InputLeftElement
-          h="8"
-          pointerEvents="none"
-          children={<SearchIcon color="gray.200" />}
-        />
-        <Input
-          colorScheme="whiteAlpha"
-          size="sm"
-          placeholder="Search"
-          rounded="md"
-          _placeholder={{
-            color: "whiteAlpha.700",
-          }}
-          value={term}
-          onChange={(e) => setTerm(e.target.value)}
-        />
-      </InputGroup>
+  const [showResultsPopup, setShowResultsPopup] = useState(false);
 
-      {results.length > 0 && (
+  const popupRef = useRef(null);
+  useOutsideClick({
+    ref: popupRef,
+    handler: () => {
+      setShowResultsPopup(false);
+      setTerm("");
+    },
+  });
+
+  return (
+    <Box>
+      {showResultsPopup ? (
+        <CloseIcon
+          color="gray.200"
+          onClick={() => setShowResultsPopup(false)}
+        />
+      ) : (
+        <SearchIcon
+          color="gray.200"
+          onClick={() => setShowResultsPopup(true)}
+        />
+      )}
+
+      {/* TODO: Prevent page scroll while popup is open */}
+
+      {showResultsPopup && (
         <Box
+          ref={popupRef}
+          label="popup"
           pos="absolute"
-          top="10"
-          right="0"
-          w="container.sm"
-          bg="gray.900"
-          p="4"
+          top="20"
+          left="0"
+          w={["sm", "container.sm"]}
+          /* bg="gray.900" */
+          bg="pink.700"
           rounded="md"
           shadow="dark-lg"
+          px="4"
         >
+          <Box bg="pink.400" mb="4">
+            <InputGroup>
+              <InputLeftElement
+                h="8"
+                pointerEvents="none"
+                children={<SearchIcon color="gray.200" />}
+              />
+              <Input
+                autoFocus={true}
+                colorScheme="whiteAlpha"
+                size="sm"
+                placeholder="Search in Docs"
+                rounded="md"
+                _placeholder={{
+                  color: "whiteAlpha.700",
+                }}
+                value={term}
+                onChange={(e) => setTerm(e.target.value)}
+              />
+            </InputGroup>
+          </Box>
+
           {readyResults.map((result: any) => (
             <Link href={result.slug} passHref key={result.id}>
               <a>
