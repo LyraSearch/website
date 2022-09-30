@@ -1,9 +1,20 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { Image, Tooltip } from '@chakra-ui/react'
-import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/layout'
+import { Image, keyframes, Show, Tooltip } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/layout'
 import { ShortDemo } from '../components/ShortDemo'
 import GitHubButton from 'react-github-btn'
+
+const rotationKeyframes = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const rotationAnimation = `${rotationKeyframes} 40s linear infinite`
 
 const supportedRuntimes = [
   {
@@ -56,19 +67,21 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Box
-        pos='absolute'
-        top='0'
-        right='0'
-        w='40%'
-        h='container.md'
-        bg='red'
-        zIndex='0'
-        bgGradient='linear(to-bl, #FF00E5, #5200FF, #00C8FF)'
-        roundedBottomLeft='20%'
-      />
-      <Box w='container.xl' h='container.sm' m='auto' pt='40' display='grid' gridTemplateColumns='1fr 1fr' zIndex='1'>
-        <Box display='flex' flexDir='column' w='full' h='full' justifyContent='center'>
+      <Show above='md'>
+        <Box
+          pos='absolute'
+          top='0'
+          right='0'
+          w='40%'
+          h={{ base: 'container.sm', md: 'container.md' }}
+          bg='red'
+          zIndex='0'
+          bgGradient='linear(to-bl, #FF00E5, #5200FF, #00C8FF)'
+          roundedBottomLeft='20%'
+        />
+      </Show>
+      <Box w={{ base: 'full', md: 'container.xl' }} h='container.sm' m='auto' pt='40' display='grid' gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} zIndex='2'>
+        <Box display='flex' flexDir='column' w='full' h='full' justifyContent='center' px={{ base: '6', md: '0' }}>
           <Heading fontSize='6xl' color='gray.100' lineHeight='1'>
             The <Text as='span' bgGradient='linear(to-l, #08B5FF, #F101E8)' bgClip='text'>{definition}</Text><br />
             search experience
@@ -85,13 +98,13 @@ const Home: NextPage = () => {
             </Box>
           </Box>
         </Box>
-        <Box zIndex='banner' w='full' h='full' display='flex' justifyContent='flex-end' alignItems='center'>
-          <Image w='container.sm' h='auto' shadow='dark-lg' src='/images/code-example.png' alt='Example of running lyra on a JavaScript runtime' rounded='xl' />
+        <Box zIndex='banner' w='full' h='full' p={{ base: '4', md: '0' }} display='flex' justifyContent='flex-end' alignItems='center'>
+          <Image w={{ base: 'full', md: 'container.sm' }} h='auto' shadow='dark-lg' src='/images/code-example.png' alt='Example of running lyra on a JavaScript runtime' rounded='xl' />
         </Box>
       </Box>
 
       <Box w='full' bgGradient='linear(to-b, #5200FF, #080419)' mt='60'>
-        <Box w='container.xl' m='auto' py='20' display='grid' gridTemplateColumns='1fr 1fr' columnGap='16'>
+        <Box w={{ base: 'full', md: 'container.xl' }} m='auto' px={{ base: '4', md: '0' }} py='20' display='grid' gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} columnGap='16'>
           <Box>
             <Heading> Why Lyra? </Heading>
             <Text mt='10' textAlign='justify'>
@@ -108,28 +121,50 @@ const Home: NextPage = () => {
             </Text>
           </Box>
 
-          <Box>
+          <Box pt={{ base: '10', md: '0' }}>
             <ShortDemo />
           </Box>
         </Box>
       </Box>
 
       <Box w='full' mt='20'>
-        <Box w='container.xl' m='auto' pb='20'>
+        <Box w={{ base: 'full', md: 'container.xl' }} m='auto' pb='20'>
           <Heading textAlign='center'> Runs everywhere </Heading>
-          <Grid templateColumns='repeat(8, 1fr)' mt='10'>
-            {supportedRuntimes.map((runtime) => (
-              <Box key={runtime.name}>
-                <Tooltip hasArrow label={runtime.name} placement='top'>
-                  <Image
-                    src={runtime.image}
-                    alt={runtime.name}
-                    w='44'
-                  />
-                </Tooltip>
-              </Box>
-            ))}
-          </Grid>
+
+          <Show above='md'>
+            <Grid templateColumns='repeat(8, 1fr)' mt='10'>
+              {supportedRuntimes.map((runtime) => (
+                <Box key={runtime.name}>
+                  <Tooltip hasArrow label={runtime.name} placement='top'>
+                    <Image
+                      src={runtime.image}
+                      alt={runtime.name}
+                      w='44'
+                    />
+                  </Tooltip>
+                </Box>
+              ))}
+            </Grid>
+          </Show>
+
+          <Show below='md'>
+            <Flex pos='relative' justifyContent='center' alignItems='center' minH='80'>
+              <Image
+                src='/misc/supported-runtimes.svg'
+                alt='Runtimes supported by Lyra'
+                w='full'
+                pos='absolute'
+                animation={rotationAnimation}
+              />
+              <Image
+                src='/logo/lyra-shadowed.svg'
+                alt='Lyra logo'
+                w='44'
+                pos='absolute'
+              />
+            </Flex>
+          </Show>
+
           <Text textAlign='center' mt='10'> ...and any other JavaScript runtime. </Text>
         </Box>
 

@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Input } from '@chakra-ui/input'
-import { Box, Text } from '@chakra-ui/layout'
+import { Box, Grid, Text } from '@chakra-ui/layout'
+import { Show, Flex } from '@chakra-ui/react'
 import { create, insertBatch, RetrievedDoc, search, formatNanoseconds } from '@lyrasearch/lyra'
 import { Skeleton } from '@chakra-ui/skeleton'
 
@@ -31,9 +32,9 @@ const db = create({
   }
 })
 
-function trimText (text: string): string {
-  if (text.length > 100) {
-    return text.substring(0, 100) + '...'
+function trimText (text: string, len: number = 100): string {
+  if (text.length > len) {
+    return text.substring(0, len) + '...'
   }
 
   return text
@@ -97,7 +98,7 @@ export const ShortDemo = () => {
         {count} total results in {elapsed}
       </Box>
 
-      <Box display='grid' gridTemplateColumns='repeat(3, 1fr)' gap='4' mt='4'>
+      <Box display='grid' gridTemplateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap='4' mt='4'>
 
         {!ready && (
           [1, 2, 3].map((i) => (
@@ -109,17 +110,35 @@ export const ShortDemo = () => {
 
         {results.map((result) => (
           <Box key={result.id} p='4' rounded='lg' bgColor='white'>
-            <Box pos='relative' w='full' h='40' rounded='xl'>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500/${result.image}`}
-                layout='fill'
-                objectFit='cover'
-                style={{ borderRadius: '0.5rem' }}
-              />
-            </Box>
+            <Show above='md'>
+              <Box pos='relative' w='full' h='40' rounded='xl'>
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500/${result.image}`}
+                  layout='fill'
+                  objectFit='cover'
+                  style={{ borderRadius: '0.5rem' }}
+                />
+              </Box>
 
-            <Text mt='3' maxW='full' color='gray.900' fontWeight='bold'> <>{result.title}</> </Text>
-            <Text color='gray.600' mt='2'> <>{trimText(result.description as string)}</> </Text>
+              <Text mt='3' maxW='full' color='gray.900' fontWeight='bold'> <>{result.title}</> </Text>
+              <Text color='gray.600' mt='2'> <>{trimText(result.description as string)}</> </Text>
+            </Show>
+            <Show below='md'>
+              <Grid gridTemplateColumns='30% 1fr' columnGap='6'>
+                <Box pos='relative' w='full' h='full' rounded='xl'>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w500/${result.image}`}
+                    layout='fill'
+                    objectFit='cover'
+                    style={{ borderRadius: '0.5rem' }}
+                  />
+                </Box>
+                <Box>
+                  <Text maxW='full' color='gray.900' fontWeight='bold'> <>{result.title}</> </Text>
+                  <Text color='gray.600'> <>{trimText(result.description as string, 50)}</> </Text>
+                </Box>
+              </Grid>
+            </Show>
           </Box>
         ))}
       </Box>
