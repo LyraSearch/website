@@ -1,7 +1,10 @@
-import type { FC } from 'react'
 import Link from 'next/link'
+import { FC, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { Image } from '@chakra-ui/image'
-import { Box, Text } from '@chakra-ui/layout'
+import { Box, Stack, Text } from '@chakra-ui/layout'
+import { IconButton, Show, Drawer, DrawerBody, DrawerOverlay, DrawerContent, useDisclosure } from '@chakra-ui/react'
+import { HamburgerIcon } from '@chakra-ui/icons'
 import { NavSearch } from '../NavSearch'
 
 interface PageLinkProps {
@@ -9,7 +12,7 @@ interface PageLinkProps {
   label: string
 }
 
-const pages: PageLinkProps[] = [
+export const pages: PageLinkProps[] = [
   {
     href: '/docs',
     label: 'Docs'
@@ -28,25 +31,71 @@ const PageLink: FC<PageLinkProps> = ({ href, label }) => (
   </Link>
 )
 
-export const NavBar: FC<{}> = () => {
-  return (
-    <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px'>
-      <Box maxW='container.xl' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
-        <Link href='/' passHref>
-          <a>
-            <Image
-              src='/logo/lyra-edge-logo-white.svg'
-              alt='Lyra, the edge search experience'
-              w='44'
-            />
-          </a>
-        </Link>
+const PageLinkMobile: FC<PageLinkProps> = ({ href, label }) => (
+  <Link href={href} passHref>
+    <Text as='a' textTransform='uppercase' _hover={{ textDecor: 'underline' }}>
+      {label}
+    </Text>
+  </Link>
+)
 
-        <Box display='flex' alignItems='center' h='full'>
-          {pages.map((page) => <PageLink key={page.href} {...page} />)}
-          <NavSearch />
+export const NavBar: FC<{}> = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { asPath } = useRouter()
+
+  useEffect(onClose, [asPath])
+
+  return (
+    <>
+      <Show above='md'>
+        <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px'>
+          <Box maxW='container.xl' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
+            <Link href='/' passHref>
+              <a>
+                <Image
+                  src='/logo/lyra-edge-logo-white.svg'
+                  alt='Lyra, the edge search experience'
+                  w='44'
+                />
+              </a>
+            </Link>
+
+            <Box display='flex' alignItems='center' h='full'>
+              {pages.map((page) => <PageLink key={page.href} {...page} />)}
+              <NavSearch />
+            </Box>
+          </Box>
         </Box>
-      </Box>
-    </Box>
+      </Show>
+
+      <Show below='md'>
+        <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px' px='6'>
+          <Box w='full' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
+            <Link href='/' passHref>
+              <a>
+                <Image
+                  src='/logo/lyra-edge-logo-white.svg'
+                  alt='Lyra, the edge search experience'
+                  w='28'
+                />
+              </a>
+            </Link>
+
+            <IconButton aria-label='Open menu' icon={<HamburgerIcon />} colorScheme='whiteAlpha' onClick={onOpen} />
+          </Box>
+        </Box>
+      </Show>
+
+      <Drawer placement='right' onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerBody bgColor='gray.900' color='white'>
+            <Stack spacing='4' pt='4'>
+              {pages.map((page) => <PageLinkMobile key={page.href} {...page} />)}
+            </Stack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
   )
 }

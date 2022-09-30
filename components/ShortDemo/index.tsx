@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Input } from '@chakra-ui/input'
 import { Box, Grid, Text } from '@chakra-ui/layout'
-import { Show, Flex } from '@chakra-ui/react'
+import { Show } from '@chakra-ui/react'
 import { create, insertBatch, RetrievedDoc, search, formatNanoseconds } from '@lyrasearch/lyra'
 import { Skeleton } from '@chakra-ui/skeleton'
 

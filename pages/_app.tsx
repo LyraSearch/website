@@ -24,11 +24,9 @@ function MyApp ({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Box w='full' bgColor='darkBg' style={{ minHeight: '100vh' }} color='gray.200' overflowX='hidden'>
-        <Show above='md'>
-          <NavBar />
-        </Show>
+        <NavBar />
         <Component {...pageProps} />
-        {/* <Footer /> */}
+        <Footer />
       </Box>
     </ChakraProvider>
   )

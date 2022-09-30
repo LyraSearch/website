@@ -48,7 +48,7 @@ const social = [
 export function Footer () {
   return (
     <Box w='full' bg='#5200FF'>
-      <Grid w='container.xl' m='auto' py='10' gridTemplateColumns='1fr 1fr 1fr' gap='10'>
+      <Grid w='container.xl' m='auto' py='10' px={{ base: '6', md: '0' }} gridTemplateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap='10'>
         <GridItem>
           <Image src='/logo/lyra-edge-logo-white.svg' w='40' />
         </GridItem>
@@ -88,7 +88,7 @@ export function Footer () {
           <Text fontWeight='bold' fontSize='xl'> The edge search experience </Text>
           <Text mt='2'> Developed and sponsored by <Text as='a' href='https://nearform.com' fontWeight='bold' _hover={{ textDecor: 'underline' }}> NearForm </Text> </Text>
           <Text> Licensed under the Apache 2.0 license </Text>
-          <Flex mt='2'>
+          <Flex mt={{ base: '4', md: '2' }}>
             {social.map((link) => (
               <Link href={link.href} key={link.label}>
                 <a target='_blank' rel='noopener noreferrer'>
