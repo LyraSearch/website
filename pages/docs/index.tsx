@@ -22,11 +22,11 @@ export default function Docs (props: DocsProps) {
   const sections = Object.keys(posts)
 
   return (
-    <Box w='container.xl' m='auto' py='40'>
+    <Box w={{ base: 'full', md: 'container.xl' }} m='auto' py='40' px={{ base: '6', md: '0' }}>
       <Box textAlign='center'>
         <Text as='span' fontSize='5xl' fontWeight='bold' bgGradient='linear(to-l, #FF00E5, #00C8FF)' bgClip='text'> Lyra Documentation </Text>
       </Box>
-      <Grid gridTemplateColumns='1fr 1fr 1fr' mt='20' gap='10'>
+      <Grid gridTemplateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} mt='20' gap='10'>
         {sections.map((section) => (
           <GridItem key={section}>
             <Text as='h2' fontSize='2xl' fontWeight='bold' textTransform='capitalize' mb='5'> {section} </Text>

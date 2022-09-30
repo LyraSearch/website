@@ -80,9 +80,9 @@ const Home: NextPage = () => {
           roundedBottomLeft='20%'
         />
       </Show>
-      <Box w={{ base: 'full', md: 'container.xl' }} h='container.sm' m='auto' pt='40' display='grid' gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} zIndex='2'>
+      <Box w={{ base: 'full', md: 'container.xl' }} h='container.sm' m='auto' pt={{ base: '28', md: '40' }} display='grid' gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} zIndex='2'>
         <Box display='flex' flexDir='column' w='full' h='full' justifyContent='center' px={{ base: '6', md: '0' }}>
-          <Heading fontSize='6xl' color='gray.100' lineHeight='1'>
+          <Heading fontSize={{ base: '5xl', md: '6xl' }} color='gray.100' lineHeight='1'>
             The <Text as='span' bgGradient='linear(to-l, #08B5FF, #F101E8)' bgClip='text'>{definition}</Text><br />
             search experience
           </Heading>

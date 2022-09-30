@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { extendTheme, Box, ChakraProvider, Show } from '@chakra-ui/react'
+import { extendTheme, Box, ChakraProvider } from '@chakra-ui/react'
 import { NavBar } from '../components/NavBar'
 import { Footer } from '../components/Footer'
 
