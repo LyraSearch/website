@@ -3,7 +3,7 @@
     {
       "name": "Michele Riva",
       "role": "Senior Software Architect @NearForm",
-      "image": "/imgs/team/micheleriva.jpg",
+      "image": "/team/micheleriva.jpg",
       "social": {
         "twitter": "MicheleRivaCode",
         "github": "MicheleRiva",
@@ -12,8 +12,8 @@
     },
     {
       "name": "Paolo Insogna",
-      "role": "Node.js core member and Staff DX Engineer @NearForm",
-      "image": "/imgs/team/paoloinsogna.jpg",
+      "role": "Node.js core member and Staff Engineer @NearForm",
+      "image": "/team/paoloinsogna.jpg",
       "social": {
         "twitter": "p_insogna",
         "github": "ShogunPanda",

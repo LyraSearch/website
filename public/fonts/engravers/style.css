@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Engravers Gothic';
+    src: local('Engravers Gothic Regular'), local('Engravers-Gothic-Regular'),
+        url('EngraversGothic.woff2') format('woff2'),
+        url('EngraversGothic.woff') format('woff'),
+        url('EngraversGothic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }

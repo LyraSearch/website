@@ -1,191 +1,174 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Image, keyframes, Show, Tooltip } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/layout'
+import { ShortDemo } from '../components/ShortDemo'
 import GitHubButton from 'react-github-btn'
-import hljs from 'highlight.js';
-import { Container } from '../components/Container'
 
-import javascript from 'highlight.js/lib/languages/javascript';
-import 'highlight.js/styles/atom-one-dark.css'
+const rotationKeyframes = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const rotationAnimation = `${rotationKeyframes} 40s linear infinite`
+
+const supportedRuntimes = [
+  {
+    name: 'AWS Lambda@Edge',
+    image: '/misc/runtimes/aws-lambda-edge.svg'
+  },
+  {
+    name: 'Bun',
+    image: '/misc/runtimes/bun.svg'
+  },
+  {
+    name: 'Cloudflare Workers',
+    image: '/misc/runtimes/cloudflare-workers.svg'
+  },
+  {
+    name: 'Deno',
+    image: '/misc/runtimes/deno.svg'
+  },
+  {
+    name: 'Browsers',
+    image: '/misc/runtimes/javascript.svg'
+  },
+  {
+    name: 'Netlify Functions',
+    image: '/misc/runtimes/netlify-functions.svg'
+  },
+  {
+    name: 'Node.js',
+    image: '/misc/runtimes/node-js.svg'
+  },
+  {
+    name: 'React Native',
+    image: '/misc/runtimes/react-native.svg'
+  }
+]
 
 const Home: NextPage = () => {
+  const definitions = ['edge', 'offline', 'embedded', 'universal']
+  const [definition, setDefinition] = useState(definitions[0])
 
   useEffect(() => {
-    hljs.registerLanguage('javascript', javascript);
-    hljs.initHighlighting();
+    const interval = setInterval(() => {
+      const index = definitions.indexOf(definition)
+      const nextIndex = index + 1 === definitions.length ? 0 : index + 1
+      setDefinition(definitions[nextIndex])
+    }, 3000)
 
+    return () => clearInterval(interval)
   }, [])
 
   return (
     <>
-      <Container size='full' className='bg-gradient-to-b from-[#150232] to-[#0a0019]'>
-        <Container size='lg' className='flex w-full justify-center items-center py-10 h-screen md:h-[700px]'>
-          <div className='grid gap-10 grid-cols-1 md:grid-cols-2'>
+      <Show above='md'>
+        <Box
+          pos='absolute'
+          top='0'
+          right='0'
+          w='40%'
+          h={{ base: 'container.sm', md: 'container.md' }}
+          bg='red'
+          zIndex='0'
+          bgGradient='linear(to-bl, #FF00E5, #5200FF, #00C8FF)'
+          roundedBottomLeft='20%'
+        />
+      </Show>
+      <Box w={{ base: 'full', md: 'container.xl' }} h='container.sm' m='auto' pt={{ base: '28', md: '40' }} display='grid' gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} zIndex='2'>
+        <Box display='flex' flexDir='column' w='full' h='full' justifyContent='center' px={{ base: '6', md: '0' }}>
+          <Heading fontSize={{ base: '5xl', md: '6xl' }} color='gray.100' lineHeight='1'>
+            The <Text as='span' bgGradient='linear(to-l, #08B5FF, #F101E8)' bgClip='text'>{definition}</Text><br />
+            search experience
+          </Heading>
+          <Text as='p' fontSize='xl' color='gray.400' mt='3'>
+            Lyra is a fully-featured full-text search engine that runs wherever JavaScript runs, including browsers, servers, React Native, edge networks, and more.
+          </Text>
+          <Box display='flex' mt='5' w='full'>
+            <Box>
+              <GitHubButton href='https://github.com/nearform/lyra' data-icon='octicon-star' data-size='large' data-show-count='true' aria-label='Star nearform/lyra on GitHub'>Star</GitHubButton>
+            </Box>
+            <Box ml='3'>
+              <GitHubButton href='https://github.com/nearform/lyra/fork' data-icon='octicon-repo-forked' data-size='large' data-show-count='true' aria-label='Fork nearform/lyra on GitHub'>Fork</GitHubButton>
+            </Box>
+          </Box>
+        </Box>
+        <Box zIndex='banner' w='full' h='full' p={{ base: '4', md: '0' }} display='flex' justifyContent='flex-end' alignItems='center'>
+          <Image w={{ base: 'full', md: 'container.sm' }} h='auto' shadow='dark-lg' src='/images/code-example.png' alt='Example of running lyra on a JavaScript runtime' rounded='xl' />
+        </Box>
+      </Box>
 
-            <div className='w-full h-full flex items-center'>
-              <div>
-                <h1 className='text-4xl md:text-6xl font-black'> Lyra </h1>
-                <h2 className='text-xl mt-6'> Fast, typo-tolerant, full-text search engine written in TypeScript. </h2>
-
-                <div className='flex mt-6'>
-                  <div className='mr-4'>
-                    <GitHubButton href="https://github.com/nearform/lyra" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star nearform/lyra on GitHub">Star</GitHubButton>
-                  </div>
-                  <GitHubButton href="https://github.com/nearform/lyra/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork nearform/lyra on GitHub">Fork</GitHubButton>
-                </div>
-              </div>
-            </div>
-
-            <div className='w-full flex justify-center'>
-              <div className='relative h-full w-full'>
-                <Image
-                  src='/imgs/demo/preview-light.png'
-                  alt='An example usage of Lyra'
-                  layout='responsive'
-                  width={'100%'}
-                  height={'76%'}
-                  className='shadow-lg shadow-violet-900'
-                />
-              </div>
-            </div>
-
-          </div>
-        </Container>
-      </Container>
-
-
-      <Container size='full' className='bg-violet-900'>
-        <Container className='flex flex-col justify-center items-center pt-5 pb-7'>
-          <p className='mb-2 text-xs'> Built & sponsored by </p>
-          <img src='/imgs/sponsors/nearform.svg' className='w-48' />
-        </Container>
-      </Container>
-
-      <Container size='full' className='bg-violet-700 text-slate-100'>
-        <Container size='lg' className='py-20'>
-          <h2 className='font-bold text-3xl'> Why? </h2>
-
-          <div className='grid grid-cols-1 md:grid-cols-[60%_1fr] gap-10'>
-            <p className='mt-6'>
+      <Box w='full' bgGradient='linear(to-b, #5200FF, #080419)' mt='60'>
+        <Box w={{ base: 'full', md: 'container.xl' }} m='auto' px={{ base: '4', md: '0' }} py='20' display='grid' gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} columnGap='16'>
+          <Box>
+            <Heading> Why Lyra? </Heading>
+            <Text mt='10' textAlign='justify'>
               Lyra is a modern, dependency-free full-text search engine written in TypeScript. <br />
-              It has been built with speed in mind and completes most search lookups in a few microseconds. <br /><br />
+              It has been built with speed in mind and completes most search lookups in a few microseconds.<br /><br />
 
-              It implements a very fast, vanilla prefix tree to perform efficient lookups and easy serialization with multiple formats, such as dpack and protocol buffers. <br /><br />
+              It implements a very fast, vanilla prefix tree to perform efficient lookups and easy serialization with multiple formats, such as <b>dpack</b>, <b>messagepack</b>, and <b>protocol buffers</b>.<br /><br />
 
-              Its main focus is to be able to run on edge networks, such as <b>AWS Lambda@Edge</b>, <b>Cloudflare Workers</b>, and <b>Netlify Functions</b>, so expect some updates on that. <br /><br />
+              Its main focus is to be able to run on edge networks, such as <b>AWS Lambda@Edge</b>, <b>Cloudflare Workers</b>, and <b>Netlify Functions</b>, so expect some updates on that.<br /><br />
+
+              Given that it's written in TypeScript, it can be used in <b>any</b> JavaScript runtime, including browsers, servers, React Native, and more.<br /><br />
 
               It was named after the Lyra constellation due to its distributed and highly scalable nature.
-            </p>
+            </Text>
+          </Box>
 
-            <div className='flex-col items-end justify-end hidden md:flex'>
-              <div className='relative w-96 h-full shadow-lg shadow-violet-900'>
-                <Image
-                  src='/imgs/dall-e/dall-e-lyra.png'
-                  layout='fill'
-                  objectFit='cover'
-                  objectPosition='center'
-                  alt='Lyra designed by DALL-E'
-                  className=''
-                />
-              </div>
-              <p className='w-96 text-center mt-4 text-violet-200'>
-                Lyra imagined by DALL-E
-              </p>
-            </div>
+          <Box pt={{ base: '10', md: '0' }}>
+            <ShortDemo />
+          </Box>
+        </Box>
+      </Box>
 
-          </div>
-        </Container>
+      <Box w='full' mt='20'>
+        <Box w={{ base: 'full', md: 'container.xl' }} m='auto' pb='20'>
+          <Heading textAlign='center'> Runs everywhere </Heading>
 
-        <Container size='lg' className='border-t-2 border-violet-500 py-20'>
-          <h2 className='font-bold text-3xl'> Quickstart </h2>
+          <Show above='md'>
+            <Grid templateColumns='repeat(8, 1fr)' mt='10'>
+              {supportedRuntimes.map((runtime) => (
+                <Box key={runtime.name}>
+                  <Tooltip hasArrow label={runtime.name} placement='top'>
+                    <Image
+                      src={runtime.image}
+                      alt={runtime.name}
+                      w='44'
+                    />
+                  </Tooltip>
+                </Box>
+              ))}
+            </Grid>
+          </Show>
 
-          <div>
-            <h3 className='font-bold text-2xl my-10'> Install Lyra </h3>
-            <pre>
-              <code className='bash rounded-lg'>yarn add @nearform/lyra</code>
-            </pre>
+          <Show below='md'>
+            <Flex pos='relative' justifyContent='center' alignItems='center' minH='80' mt='10'>
+              <Image
+                src='/misc/supported-runtimes.svg'
+                alt='Runtimes supported by Lyra'
+                w='full'
+                pos='absolute'
+                animation={rotationAnimation}
+              />
+              <Image
+                src='/logo/lyra-shadowed.svg'
+                alt='Lyra logo'
+                w='44'
+                pos='absolute'
+              />
+            </Flex>
+          </Show>
 
-            <h3 className='font-bold text-2xl my-10'> Create a new database </h3>
-            <pre>
-              <code className="js rounded-lg">
-                {`import { create } from '@nearform/lyra'
-const db = create({
-  schema: {
-    quote: 'string',
-    author: 'string'
-  }
-})`}
-              </code>
-            </pre>
+          <Text textAlign='center' mt='10'> ...and any other JavaScript runtime. </Text>
+        </Box>
 
-            <h3 className='font-bold text-2xl my-10'> Insert data </h3>
-            <pre>
-              <code className="js rounded-lg">
-                {`import { create, insert } from '@nearform/lyra'
-
-insert(db, {
-  quote: 'It is during our darkest moments that we must focus to see the light.',
-  author: 'Aristotle'
-});
-
-insert(db, {
-  quote: 'If you really look closely, most overnight successes took a long time.',
-  author: 'Steve Jobs'
-});
-
-insert(db, {
-  quote: 'If you are not willing to risk the usual, you will have to settle for the ordinary.',
-  author: 'Jim Rohn'
-});
-
-insert(db, {
-  quote: 'You miss 100% of the shots you don\\'t take',
-  author: 'Wayne Gretzky - Michael Scott'
-});
-`}
-              </code>
-            </pre>
-
-            <h3 className='font-bold text-2xl my-10'> Search for data </h3>
-            <pre>
-              <code className="js rounded-lg">
-                {`import { create, insert, search } from '@nearform/lyra'
-
-const searchResult = search(db, {
-  term: 'if',
-  properties: '*'
-});
-
-// output:
-
-{
-  elapsed: 99, // elapsed time is in microseconds
-  hits: [
-    {
-      id: 'ckAOPGTA5qLXx0MgNr1Zy',
-      quote: 'If you really look closely, most overnight successes took a long time.',
-      author: 'Steve Jobs'
-    },
-    {
-      id: 'fyl-_1veP78IO-wszP86Z',
-      quote: 'If you are not willing to risk the usual, you will have to settle for the ordinary.',
-      author: 'Jim Rohn'
-    }
-  ],
-  count: 2
-}
-`}
-              </code>
-            </pre>
-          </div>
-
-          <div className='text-center mt-20'>
-            <a href='https://docs.lyrajs.io/' className='text-violet-100 bg-violet-900 hover:bg-violet-800 px-6 py-3 font-bold text-xl rounded-md'>
-              Read the full docs
-            </a>
-          </div>
-        </Container>
-      </Container>
+      </Box>
     </>
   )
 }

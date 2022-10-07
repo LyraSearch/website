@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "$schema": {
+    "rules": {
+      "react/no-children-prop": "off"
+    }
+  }
 }

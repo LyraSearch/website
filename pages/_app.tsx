@@ -1,40 +1,56 @@
 import type { AppProps } from 'next/app'
+import { extendTheme, Box, ChakraProvider } from '@chakra-ui/react'
+import { DefaultSeo } from 'next-seo'
 import { NavBar } from '../components/NavBar'
 import { Footer } from '../components/Footer'
-import { DefaultSeo } from 'next-seo'
-import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+import '@fontsource/roboto/100.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/900.css'
+
+const theme = extendTheme({
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+  fonts: {
+    heading: '\'Roboto\', sans-serif',
+    body: '\'Roboto\', sans-serif'
+  },
+  colors: {
+    darkBg: '#08041A'
+  }
+})
+
+function MyApp ({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <ChakraProvider theme={theme}>
       <DefaultSeo
-        title='✨ Lyra'
-        description='Fast, in-memory, typo-tolerant, full-text search engine written in TypeScript'
-        defaultTitle='✨ Lyra'
+        defaultTitle='Lyra'
+        titleTemplate='Lyra | %s'
+        twitter={{
+          handle: '@lyra_search',
+          cardType: 'summary_large_image'
+        }}
         openGraph={{
           type: 'website',
-          locale: 'en_IE',
-          url: 'https://lyrajs.io/',
-          site_name: 'Lyra',
-          description: 'Fast, in-memory, typo-tolerant, full-text search engine written in TypeScript',
-          title: 'Lyra',
+          locale: 'en_EN',
           images: [
             {
-              url: 'https://lyrajs.io/imgs/seo/lyra-og-image.png',
-              alt: 'Lyra, full-text search engine',
+              url: 'https://lyrajs.io/images/og-image.png',
+              alt: 'Lyra, the edge search experience',
               height: 1080,
-              width: 1920,
+              width: 1920
             }
           ]
         }}
       />
-      <div className='w-full min-h-screen bg-slate-100 text-slate-100'>
+      <Box w='full' bgColor='darkBg' style={{ minHeight: '100vh' }} color='gray.200' overflowX='hidden'>
         <NavBar />
         <Component {...pageProps} />
         <Footer />
-      </div>
-    </>
-  );
+      </Box>
+    </ChakraProvider>
+  )
 }
 
 export default MyApp

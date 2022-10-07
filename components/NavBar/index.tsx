@@ -1,90 +1,101 @@
-import s from "./navbar.module.css";
+import Link from 'next/link'
+import { FC, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { Image } from '@chakra-ui/image'
+import { Box, Stack, Text } from '@chakra-ui/layout'
+import { IconButton, Show, Drawer, DrawerBody, DrawerOverlay, DrawerContent, useDisclosure } from '@chakra-ui/react'
+import { HamburgerIcon } from '@chakra-ui/icons'
+import { NavSearch } from '../NavSearch'
 
-import { useState } from "react";
-import cn from "classnames";
-import Link from "next/link";
-import { AiFillGithub } from "react-icons/ai";
-import { Container } from "../Container";
-import { MenuIcon } from "../Icons";
+interface PageLinkProps {
+  href: string
+  label: string
+}
 
-const pages = [
+export const pages: PageLinkProps[] = [
   {
-    name: "Docs",
-    href: "https://docs.lyrajs.io",
-    external: true,
+    href: '/docs',
+    label: 'Docs'
   },
   {
-    name: "Live demo",
-    href: "/demo",
-  },
-  {
-    name: "Benchmarks",
-    href: "/benchmarks",
-  },
-  {
-    name: "Contribute",
-    href: "/contribute",
-  },
-];
+    href: '/contribute',
+    label: 'Contribute'
+  }
+]
 
-const GitHubLink = () => (
-  <a
-    href="https://github.com/nearform/lyra"
-    target="_blank"
-    rel="noreferrer"
-    className="hover:text-slate-300"
-  >
-    <AiFillGithub className="w-5 h-5" />
-  </a>
-);
+const PageLink: FC<PageLinkProps> = ({ href, label }) => (
+  <Link href={href} passHref>
+    <Text as='a' textTransform='uppercase' ml='4' _hover={{ textDecor: 'underline' }}>
+      {label}
+    </Text>
+  </Link>
+)
 
-export function NavBar() {
-  const [mobileNavbar, setMobileNavbar] = useState(false);
+const PageLinkMobile: FC<PageLinkProps> = ({ href, label }) => (
+  <Link href={href} passHref>
+    <Text as='a' textTransform='uppercase' _hover={{ textDecor: 'underline' }}>
+      {label}
+    </Text>
+  </Link>
+)
 
-  const toggleMobileNavbar = () => setMobileNavbar(!mobileNavbar);
+export const NavBar: FC<{}> = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { asPath } = useRouter()
+
+  useEffect(onClose, [asPath])
 
   return (
-    <div className={s.navbar}>
-      <Container>
-        <div className="flex justify-between py-6 m-auto">
-          <div className="text-3xl font-bold">
-            <Link href="/" passHref>
-              <a>✨ Lyra</a>
+    <>
+      <Show above='md'>
+        <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px'>
+          <Box maxW='container.xl' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
+            <Link href='/' passHref>
+              <a>
+                <Image
+                  src='/logo/lyra-edge-logo-white.svg'
+                  alt='Lyra, the edge search experience'
+                  w='44'
+                />
+              </a>
             </Link>
-          </div>
 
-          <div className="flex items-center justify-end">
-            <div className={s.desktopNavbar}>
-              {pages.map((page) => (
-                <Link href={page.href} passHref key={page.href}>
-                  <a className="mr-4 hover:text-slate-300">{page.name}</a>
-                </Link>
-              ))}
-            </div>
+            <Box display='flex' alignItems='center' h='full'>
+              {pages.map((page) => <PageLink key={page.href} {...page} />)}
+              <NavSearch />
+            </Box>
+          </Box>
+        </Box>
+      </Show>
 
-            <GitHubLink />
+      <Show below='md'>
+        <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px' px='6'>
+          <Box w='full' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
+            <Link href='/' passHref>
+              <a>
+                <Image
+                  src='/logo/lyra-edge-logo-white.svg'
+                  alt='Lyra, the edge search experience'
+                  w='28'
+                />
+              </a>
+            </Link>
 
-            <div className={s.mobileNavbar}>
-              <button onClick={toggleMobileNavbar} aria-label="Toggle Menu">
-                <MenuIcon />
-              </button>
-            </div>
-          </div>
-        </div>
+            <IconButton aria-label='Open menu' icon={<HamburgerIcon />} colorScheme='whiteAlpha' onClick={onOpen} />
+          </Box>
+        </Box>
+      </Show>
 
-        {/* Mobile menu */}
-        {mobileNavbar && (
-          <div className="flex flex-col transition-all duration-300">
-            {pages.map((page) => (
-              <div className={s.menuLink} key={page.href}>
-                <Link href={page.href} passHref className={s.menuLink}>
-                  <a className="mr-4 hover:text-slate-300">{page.name}</a>
-                </Link>
-              </div>
-            ))}
-          </div>
-        )}
-      </Container>
-    </div>
-  );
+      <Drawer placement='right' onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerBody bgColor='gray.900' color='white'>
+            <Stack spacing='4' pt='4'>
+              {pages.map((page) => <PageLinkMobile key={page.href} {...page} />)}
+            </Stack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
 }
