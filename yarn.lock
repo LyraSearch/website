@@ -1004,10 +1004,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@lyrasearch/lyra@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@lyrasearch/lyra/-/lyra-0.2.4.tgz#982090699103e55c80d367dd3b5c64ae6c068237"
-  integrity sha512-yTWq0wFv+DylA+2FNGnUck11u0BBvQI+TMv00OZ+Q3pldbZiy3Ps05rHvPgwbGQDtHGQ1nri8ZHz55enZ8vqNQ==
+"@lyrasearch/lyra@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@lyrasearch/lyra/-/lyra-0.2.5.tgz#215ffdb44665292ed513aa23a921ff27cd5f3777"
+  integrity sha512-Nsx3+4XNxRjbbq2cFgXjogr098RX0b4gd9beixr9u5gMpYGpz7jufKLDeXq6QFGrQXIsFc1VdIfJe5MHgpfFtA==
 
 "@lyrasearch/plugin-data-persistence@^0.0.2":
   version "0.0.2"
@@ -3998,6 +3998,11 @@ nearley@^2.20.1:
     moo "^0.5.0"
     railroad-diagrams "^1.0.0"
     randexp "0.4.6"
+
+next-seo@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.5.0.tgz#12bdfce60a6ae098f49617357a166c2d44dbc29e"
+  integrity sha512-5ouBHFtx8YrSDW44lj0qIEQ+oMcz6stgoITB+SqHUZbhgizoJsyLmq73gJ0lxtEKpcN8vG2QgRIJfdb8OAPChw==
 
 next@12.3.0:
   version "12.3.0"

@@ -148,7 +148,7 @@ const Home: NextPage = () => {
           </Show>
 
           <Show below='md'>
-            <Flex pos='relative' justifyContent='center' alignItems='center' minH='80'>
+            <Flex pos='relative' justifyContent='center' alignItems='center' minH='80' mt='10'>
               <Image
                 src='/misc/supported-runtimes.svg'
                 alt='Runtimes supported by Lyra'
