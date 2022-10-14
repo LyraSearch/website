@@ -10,22 +10,25 @@ import { NavSearch } from '../NavSearch'
 interface PageLinkProps {
   href: string
   label: string
+  sub: boolean
 }
 
 export const pages: PageLinkProps[] = [
   {
     href: '/docs',
-    label: 'Docs'
+    label: 'Docs',
+    sub: true
   },
   {
     href: '/contribute',
-    label: 'Contribute'
+    label: 'Contribute',
+    sub: false
   }
 ]
 
-const PageLink: FC<PageLinkProps> = ({ href, label }) => (
+const PageLink: FC<PageLinkProps> = ({ href, label, sub }) => (
   <Link href={href} passHref>
-    <Text as='a' textTransform='uppercase' ml='4' _hover={{ textDecor: 'underline' }}>
+    <Text as='a' fontSize='xl' ml='4' _hover={{ textDecor: 'underline' }}>
       {label}
     </Text>
   </Link>
