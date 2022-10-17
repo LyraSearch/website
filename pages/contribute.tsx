@@ -51,9 +51,9 @@ export default function Contribute () {
                   <Box pos='relative' w='24' h='24'>
                     <Image
                       src={member.image}
-                      layout="fixed"
-                      width="80"
-                      height="80"
+                      layout='fixed'
+                      width='80'
+                      height='80'
                       objectFit='cover'
                       style={{ borderRadius: '100%' }}
                     />

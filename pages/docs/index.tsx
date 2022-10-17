@@ -27,7 +27,7 @@ export default function Docs (props: DocsProps) {
       <NextSeo title='Documentation' />
       <Box w={{ base: 'full', md: 'container.xl' }} m='auto' py='40' px={{ base: '6', md: '0' }}>
         <Box textAlign='center'>
-          <Text as='span' fontSize={{ base: '4xl', md: '5xl'}} fontWeight='bold' bgGradient='linear(to-l, #FF00E5, #00C8FF)' bgClip='text'> Lyra Documentation </Text>
+          <Text as='span' fontSize={{ base: '4xl', md: '5xl' }} fontWeight='bold' bgGradient='linear(to-l, #FF00E5, #00C8FF)' bgClip='text'> Lyra Documentation </Text>
         </Box>
         <Grid gridTemplateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} mt='20' gap='10'>
           {sections.map((section) => (
