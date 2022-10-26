@@ -50,19 +50,18 @@ export default function Contribute () {
                 <Flex key={member.name} display='flex' alignItems='center' mx='10'>
                   <Box pos='relative' w='24' h='24'>
                     <Image
+                      alt={member.name}
                       src={member.image}
-                      layout='fixed'
                       width='80'
                       height='80'
-                      objectFit='cover'
-                      style={{ borderRadius: '100%' }}
+                      style={{ borderRadius: '100%', objectFit: 'cover' }}
                     />
                   </Box>
                   <Box ml='4'>
                     <Flex alignItems='center'>
                       <Text as='h3' fontSize='xl' fontWeight='bold'> {member.name} </Text>
                     </Flex>
-                    <Text as='p' textAlign={{ base: 'left', md: 'center' }}> {member.role} </Text>
+                    <Text as='p' textAlign='left'> {member.role} </Text>
                     <Flex mt='3'>
                       <Text as='a' cursor='pointer' href={`https://github.com/${member.social.github}`} target='_blank' mr='2'>
                         <FaGithub size='20' />

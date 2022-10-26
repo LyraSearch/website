@@ -77,10 +77,10 @@ export const ShortDemo = () => {
             <Show above='md'>
               <Box pos='relative' w='full' h='40' rounded='xl'>
                 <Image
+                  alt={result.title as string}
                   src={`https://image.tmdb.org/t/p/w500/${result.image}`}
-                  layout='fill'
-                  objectFit='cover'
-                  style={{ borderRadius: '0.5rem' }}
+                  fill
+                  style={{ borderRadius: '0.5rem', objectFit: 'cover' }}
                 />
               </Box>
 
@@ -91,10 +91,10 @@ export const ShortDemo = () => {
               <Grid gridTemplateColumns='30% 1fr' columnGap='6'>
                 <Box pos='relative' w='full' h='full' rounded='xl'>
                   <Image
+                    alt={result.title as string}
                     src={`https://image.tmdb.org/t/p/w500/${result.image}`}
-                    layout='fill'
-                    objectFit='cover'
-                    style={{ borderRadius: '0.5rem' }}
+                    fill
+                    style={{ borderRadius: '0.5rem', objectFit: 'cover' }}
                   />
                 </Box>
                 <Box>

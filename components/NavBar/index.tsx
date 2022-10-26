@@ -28,7 +28,7 @@ export const pages: PageLinkProps[] = [
 
 const PageLink: FC<PageLinkProps> = ({ href, label, sub }) => (
   <Link href={href} passHref>
-    <Text as='a' fontSize='xl' ml='4' _hover={{ textDecor: 'underline' }}>
+    <Text fontSize='xl' ml='4' _hover={{ textDecor: 'underline' }}>
       {label}
     </Text>
   </Link>
@@ -36,7 +36,7 @@ const PageLink: FC<PageLinkProps> = ({ href, label, sub }) => (
 
 const PageLinkMobile: FC<PageLinkProps> = ({ href, label }) => (
   <Link href={href} passHref>
-    <Text as='a' textTransform='uppercase' _hover={{ textDecor: 'underline' }}>
+    <Text textTransform='uppercase' _hover={{ textDecor: 'underline' }}>
       {label}
     </Text>
   </Link>
@@ -53,14 +53,12 @@ export const NavBar: FC<{}> = () => {
       <Show above='md'>
         <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px'>
           <Box maxW='container.xl' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
-            <Link href='/' passHref>
-              <a>
-                <Image
-                  src='/logo/lyra-edge-logo-white.svg'
-                  alt='Lyra, the edge search experience'
-                  w='44'
-                />
-              </a>
+            <Link href='/'>
+              <Image
+                src='/logo/lyra-edge-logo-white.svg'
+                alt='Lyra, the edge search experience'
+                w='44'
+              />
             </Link>
 
             <Box display='flex' alignItems='center' h='full'>
@@ -75,13 +73,11 @@ export const NavBar: FC<{}> = () => {
         <Box width='full' pos='fixed' zIndex='modal' backdropFilter='auto' backdropBlur='8px' px='6'>
           <Box w='full' m='auto' py='5' display='flex' justifyContent='space-between' alignItems='center'>
             <Link href='/' passHref>
-              <a>
-                <Image
-                  src='/logo/lyra-edge-logo-white.svg'
-                  alt='Lyra, the edge search experience'
-                  w='28'
-                />
-              </a>
+              <Image
+                src='/logo/lyra-edge-logo-white.svg'
+                alt='Lyra, the edge search experience'
+                w='28'
+              />
             </Link>
 
             <IconButton aria-label='Open menu' icon={<HamburgerIcon />} colorScheme='whiteAlpha' onClick={onOpen} />

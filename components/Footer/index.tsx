@@ -62,7 +62,7 @@ export function Footer () {
                 {guideLinks.map((link) => (
                   <StackItem key={link.label}>
                     <Link href={link.href} passHref>
-                      <Text as='a' _hover={{ textDecor: 'underline' }}>{link.label}</Text>
+                      <Text _hover={{ textDecor: 'underline' }}>{link.label}</Text>
                     </Link>
                   </StackItem>
                 ))}
@@ -76,7 +76,7 @@ export function Footer () {
                 {aboutLinks.map((link) => (
                   <StackItem key={link.label}>
                     <Link href={link.href} passHref>
-                      <Text as='a' _hover={{ textDecor: 'underline' }}>{link.label}</Text>
+                      <Text _hover={{ textDecor: 'underline' }}>{link.label}</Text>
                     </Link>
                   </StackItem>
                 ))}
@@ -90,10 +90,8 @@ export function Footer () {
           <Text> Licensed under the Apache 2.0 license </Text>
           <Flex mt={{ base: '4', md: '2' }}>
             {social.map((link) => (
-              <Link href={link.href} key={link.label}>
-                <a target='_blank' rel='noopener noreferrer'>
-                  <Box as={link.icon} size='20' color='white' mr='4' />
-                </a>
+              <Link href={link.href} key={link.label} target='_blank' rel='noopener noreferrer'>
+                <Box as={link.icon} size='20' color='white' mr='4' />
               </Link>
             ))}
           </Flex>

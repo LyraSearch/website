@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { Image, keyframes, Show, Tooltip } from '@chakra-ui/react'
-import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/layout'
+import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/layout'
 import { ShortDemo } from '../components/ShortDemo'
 import GitHubButton from 'react-github-btn'
 
