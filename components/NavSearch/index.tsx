@@ -70,12 +70,10 @@ export const NavSearch = () => {
         <Box pos='absolute' top='10' right='0' w='container.sm' bg='gray.900' p='4' rounded='md' shadow='dark-lg'>
           {readyResults.map((result: any) => (
             <Link href={result.slug} passHref key={result.id}>
-              <a>
-                <Box mb='2' bg='gray.800' p='2' rounded='md' _hover={{ bg: 'gray.700' }} transition='ease 0.3s'>
-                  <Text fontWeight='semibold'>{result.title}</Text>
-                  <Text>...<Text as='span' dangerouslySetInnerHTML={{ __html: result.content }} />...</Text>
-                </Box>
-              </a>
+              <Box mb='2' bg='gray.800' p='2' rounded='md' _hover={{ bg: 'gray.700' }} transition='ease 0.3s'>
+                <Text fontWeight='semibold'>{result.title}</Text>
+                <Text>...<Text as='span' dangerouslySetInnerHTML={{ __html: result.content }} />...</Text>
+              </Box>
             </Link>
           ))}
 
