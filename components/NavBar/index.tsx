@@ -5,7 +5,6 @@ import { Image } from '@chakra-ui/image'
 import { Box, Stack, Text } from '@chakra-ui/layout'
 import { IconButton, Show, Drawer, DrawerBody, DrawerOverlay, DrawerContent, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
-import { NavSearch } from '../NavSearch'
 
 interface PageLinkProps {
   href: string
@@ -15,7 +14,7 @@ interface PageLinkProps {
 
 export const pages: PageLinkProps[] = [
   {
-    href: '/docs',
+    href: 'https://docs.lyrasearch.io',
     label: 'Docs',
     sub: true
   },
@@ -63,7 +62,6 @@ export const NavBar: FC<{}> = () => {
 
             <Box display='flex' alignItems='center' h='full'>
               {pages.map((page) => <PageLink key={page.href} {...page} />)}
-              <NavSearch />
             </Box>
           </Box>
         </Box>
