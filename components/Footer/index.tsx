@@ -5,19 +5,19 @@ import { FaTwitter, FaGithub } from 'react-icons/fa'
 const guideLinks = [
   {
     label: 'Getting started',
-    href: '/docs/introduction/getting-started-with-lyra'
+    href: 'https://docs.lyrasearch.io/#installation'
   },
   {
     label: 'Creating a new instance',
-    href: '/docs/usage/creating-a-new-lyra-instance'
+    href: 'https://docs.lyrasearch.io/usage/create-a-new-lyra-instance'
   },
   {
     label: 'Insert data',
-    href: '/docs/usage/insert-data'
+    href: 'https://docs.lyrasearch.io/usage/insert-data'
   },
   {
     label: 'Search data',
-    href: '/docs/usage/search-data'
+    href: 'https://docs.lyrasearch.io/usage/search'
   }
 ]
 
