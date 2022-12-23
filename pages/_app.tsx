@@ -36,7 +36,7 @@ function MyApp ({ Component, pageProps }: AppProps) {
           locale: 'en_EN',
           images: [
             {
-              url: 'https://lyrajs.io/images/og-image.png',
+              url: 'https://lyrasearch.io/images/og-image.png',
               alt: 'Lyra, the edge search experience',
               height: 1080,
               width: 1920
